@@ -1,0 +1,85 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.Account": {
+      "version": "8.2.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "8.2.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.Identity": {
+      "version": "8.2.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "8.2.2",
+      "isInstalled": true
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "JempaTV.Application": {
+      "path": "src/JempaTV.Application/JempaTV.Application.abppkg",
+      "folder": "src"
+    },
+    "JempaTV.Application.Tests": {
+      "path": "test/JempaTV.Application.Tests/JempaTV.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "JempaTV.Domain.Shared": {
+      "path": "src/JempaTV.Domain.Shared/JempaTV.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "JempaTV.Application.Contracts": {
+      "path": "src/JempaTV.Application.Contracts/JempaTV.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "JempaTV.HttpApi": {
+      "path": "src/JempaTV.HttpApi/JempaTV.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "JempaTV.HttpApi.Client": {
+      "path": "src/JempaTV.HttpApi.Client/JempaTV.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "JempaTV.EntityFrameworkCore.Tests": {
+      "path": "test/JempaTV.EntityFrameworkCore.Tests/JempaTV.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "JempaTV.EntityFrameworkCore": {
+      "path": "src/JempaTV.EntityFrameworkCore/JempaTV.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "JempaTV.TestBase": {
+      "path": "test/JempaTV.TestBase/JempaTV.TestBase.abppkg",
+      "folder": "test"
+    },
+    "JempaTV.Domain.Tests": {
+      "path": "test/JempaTV.Domain.Tests/JempaTV.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "JempaTV.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/JempaTV.HttpApi.Client.ConsoleTestApp/JempaTV.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "JempaTV.DbMigrator": {
+      "path": "src/JempaTV.DbMigrator/JempaTV.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "JempaTV.HttpApi.Host": {
+      "path": "src/JempaTV.HttpApi.Host/JempaTV.HttpApi.Host.abppkg",
+      "folder": "src"
+    },
+    "JempaTV.Domain": {
+      "path": "src/JempaTV.Domain/JempaTV.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}
