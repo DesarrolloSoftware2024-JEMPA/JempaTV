@@ -38,5 +38,36 @@ namespace JempaTV.WatchLists
             await _watchListRepository.UpdateAsync(watchlist);
 
         }
+
+        public async Task<List<WatchListDto>> GetRecentChangesAsync()
+        {
+
+            var list = await _watchListRepository.GetListAsync();
+
+            var recentChanges = new List<WatchListDto>();
+
+            var oneDayAgo = DateTime.UtcNow.AddDays(-1);
+
+            foreach (var watchlist in list) { 
+                foreach (var serie in watchlist.Series)
+                {
+                    if (serie.LastModified >= oneDayAgo)
+                    {
+                        
+                        recentChanges.Add(new WatchListDto
+                        {
+                            Id = watchlist.Id,
+                            User = watchlist.User
+                        });
+                    }
+                }
+            }
+
+            return recentChanges;
+
+    
+        }
+
+      
     }
 }

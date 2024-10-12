@@ -24,20 +24,26 @@ namespace JempaTV.Series
             {
                 using HttpClient client = new HttpClient();
 
+                //Formamos la url con los datos
                 string url = $"{omdbUrl}?s={title}&apikey={apiKey}&type=series";
 
+                //Obtenemos la respuesta de forma asincrona
                 var response = await client.GetAsync(url);
 
+                //Pasamos la respuesta a un JSON
                 string jsonResponse = await response.Content.ReadAsStringAsync();
 
+                //Deserializamos el JSON a un Objeto
                 var searchResponse = JsonConvert.DeserializeObject<SearchResponse>(jsonResponse);
 
+                //Finalmente obtenemos la lista de series similares
                 var omdbSeriesList = searchResponse?.List ?? new List<omdbSerie>();
 
                 var matchedSeries = new List<SerieDto>();
 
                 foreach (var serie in omdbSeriesList)
                 {
+                    //Asignacion de Ids
                     id = id + 1;
                     matchedSeries.Add(new SerieDto { Title = serie.Title, Id = id });
                 }

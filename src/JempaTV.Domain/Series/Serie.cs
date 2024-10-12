@@ -9,6 +9,8 @@ namespace JempaTV.Series
 {
     public class Serie : AggregateRoot<int>
     {
-        public string Title { get; set; }
+        public required string Title { get; set; }
+
+        public DateTime LastModified { get; set; }
     }
 }

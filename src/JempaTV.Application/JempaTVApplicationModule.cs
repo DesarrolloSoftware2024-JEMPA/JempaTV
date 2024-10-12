@@ -8,6 +8,9 @@ using Volo.Abp.Modularity;
 using Volo.Abp.TenantManagement;
 using JempaTV.Series;
 using Microsoft.Extensions.DependencyInjection;
+using JempaTV.BackgroundWorker;
+using Volo.Abp.BackgroundWorkers;
+using Volo.Abp;
 
 namespace JempaTV;
 
@@ -23,6 +26,15 @@ namespace JempaTV;
     )]
 public class JempaTVApplicationModule : AbpModule
 {
+
+    public override void OnApplicationInitialization(ApplicationInitializationContext context)
+    {
+        var workerManager = context.ServiceProvider.GetRequiredService<IBackgroundWorkerManager>();
+
+        // Agregar el Background Worker
+        workerManager.AddAsync(context.ServiceProvider.GetRequiredService<WatchListChangeWorker>());
+    }
+
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         Configure<AbpAutoMapperOptions>(options =>

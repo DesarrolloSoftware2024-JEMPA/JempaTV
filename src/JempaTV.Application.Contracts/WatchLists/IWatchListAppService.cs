@@ -11,5 +11,7 @@ namespace JempaTV.WatchLists
     {
         Task AddSerieAsync(int serieId);
 
+        Task<List<WatchListDto>> GetRecentChangesAsync();
+
     }
 }

@@ -1,21 +1,20 @@
 ﻿using JempaTV.Series;
-using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Volo.Abp.Domain.Entities;
+using Volo.Abp.Application.Dtos;
 
 namespace JempaTV.WatchLists
 {
-    public class WatchList : AggregateRoot<int>
+    public class WatchListDto : EntityDto<int>
     {
-        public List<Serie> Series { get; set; }
+        public List<SerieDto> Series { get; set; }
 
-        public WatchList()
+        public WatchListDto()
         {
-            Series = new List<Serie>();
+            Series = new List<SerieDto>();
         }
 
         public int User { get; set; }
