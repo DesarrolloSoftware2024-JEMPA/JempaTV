@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/effect-coverflow';
 
 :root .lpx-theme-dark {
   --lpx-logo: url('/assets/images/logo/logo-light.svg');

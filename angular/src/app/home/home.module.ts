@@ -1,15 +1,19 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { PageModule } from '@abp/ng.components/page';
-import { SharedModule } from '../shared/shared.module';
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
+// home.module.ts
+import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-
+import { HomeComponent } from './home.component';
+import { SeriesCarouselModule } from './series-carousel/series-carousel.module';
+import { SharedModule } from '../shared/shared.module'; 
+import { PageModule } from '@abp/ng.components/page';
+import { HomeRoutingModule } from './home-routing.module';
 
 @NgModule({
-  declarations: [HomeComponent],
-  imports: [SharedModule, HomeRoutingModule, PageModule, CommonModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [
+    HomeComponent
+  ],
+  imports: [ SharedModule, HomeRoutingModule, PageModule, CommonModule,
+    SeriesCarouselModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA] // Necesario para usar elementos personalizados
 })
-export class HomeModule {}
+export class HomeModule { }

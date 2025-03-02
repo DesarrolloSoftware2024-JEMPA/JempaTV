@@ -40,25 +40,7 @@
               </p>
 
 
-          <swiper-container loop="true"  autoplay effect="coverflow"  centeredSlides="true"
-          coverflowEffect="{
-            depth:500,
-            modifer:1,
-            slidesShadows: true,
-            rotate:0,
-            stretch:0}" 
-            navigation="{
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-          }"
-          slidesPerView="1.5"
-          spaceBetween:20>
-          
-            <swiper-slide  *ngFor="let serie of series">
-              <h1> {{serie.title}}</h1>
-              <img src="{{serie.poster}}">
-            </swiper-slide>
-            </swiper-container>
+              <app-series-carousel></app-series-carousel>
           </section>
           }
       </div>
