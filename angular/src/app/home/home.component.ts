@@ -39,6 +39,10 @@ export class HomeComponent implements OnInit {
     this.authService.navigateToLogin();
   }
 
+  register(){
+    this.authService
+  }
+
   getCurrentUserName() {
     const currentUserName = this.config.getOne('currentUser').userName;
     return currentUserName;

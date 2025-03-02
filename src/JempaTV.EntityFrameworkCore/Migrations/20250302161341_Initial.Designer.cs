@@ -13,7 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace JempaTV.Migrations
 {
     [DbContext(typeof(JempaTVDbContext))]
-    [Migration("20241217182909_Initial")]
+    [Migration("20250302161341_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

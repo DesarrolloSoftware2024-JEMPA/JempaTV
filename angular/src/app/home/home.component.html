@@ -16,17 +16,25 @@
   
       <div class="title">
         <p class="text-title" >JempaTV</p>
-        <a (click)="login()" class="px-4 btn btn-primary mb-4" style="margin-top: 100px;" role="button">
-          <i class="fa fa-sign-in"></i>
-          {{ 'AbpAccount::Login' | abpLocalization }}
-        </a>
+        
       </div>
       
       <div class="information">
         <p>
-          Ingresa o registrate para seguir tus series o peliculas favoritas
+          La plataforma de streaming que dispone las mejores series y películas. 
+        </p>
+        <p>
+          Disfruta en cualquier dispositivo, ve donde y cuando quieras.
+        </p>
+        <p>
+          Inicia sesión para explorar nuestro catálogo, ¡Tu próxima maratón comienza aquí!
         </p>
       </div>
+
+      <a (click)="login()" class="btn"  role="button">
+        <i class="fa fa-sign-in"></i>
+        {{ 'AbpAccount::Iniciar sesión' | abpLocalization }}
+      </a>
       } @if(hasLoggedIn){
 
       

@@ -1,13 +1,27 @@
 
 .title{
- z-index: 100;
-  display: flex;                /* Activa Flexbox */
+  z-index: 100;
+  display: flex;                
   align-items: center;
   height: 100%;
-  padding-top: 30%;
+  padding-top: 10%;
+  font-size: 5rem;
+  color: white;
 }
 
+.btn{
+  padding: 0.5rem 1rem;
+  background-color: rgb(47, 47, 177);
+  border-radius: 20px;
+  color: white;
+  margin-top: 0.5rem;
+  transition: 0.2s ease-in-out all;
+}
 
+.btn:hover{
+  transition: 0.2s ease-in-out all;
+  transform: scale(1.05);
+  animation: gradientAnimation 0.5s forwards;}
 
 .information {
   display: flex;
@@ -16,13 +30,10 @@
   justify-content: center; /* Centra horizontalmente */
   align-items: center;    /* Centra verticalmente */
   color: rgb(255, 255, 255);
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.664);
- border: 0.5px solid white; 
- padding-top: 10px;
-z-index: 10;
+  width: 40%;
+  flex-direction: column;
+  align-items: self-start;
 }
-
 
 .series-section {
   color: white;
@@ -39,8 +50,37 @@ z-index: 10;
   margin: 0 auto 40px;
 }
 
+img {
+  height: 550px;
+  object-fit: cover;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  padding: 10px;
+}
 
+.poster {
+  position: relative;
+  border-right: 1px white solid;
+  object-fit:cover;
+  width: 284px; 
+   height: 660px; 
+  }
 
+.poster2 {
+    object-fit:cover;
+    border-right: 1px white solid;
+   width: 141.01px; height: 660px;  position: relative
+}
+
+.poster-cont {  
+  z-index: -1;
+  border-top: 10px solid;
+  border-image:   linear-gradient(180deg, #030614 0%, rgba(3, 6, 20, 0) 100%);
+  width:fit-content;
+   height: fit-content; 
+   position: absolute;
+   right: 0;
+}
 
 @media (min-width: 1199px) {
   .h-lg-100 {
@@ -83,6 +123,15 @@ z-index: 10;
     transform: scale(1);
     -webkit-transform-origin: 0% 100%;
     transform-origin: 0% 100%;
+  }
+}
+
+@keyframes gradientAnimation {
+  0% {  
+  background-color: rgb(47, 47, 177);
+  }
+  100% {
+    background: rgb(79, 75, 188);
   }
 }
 
