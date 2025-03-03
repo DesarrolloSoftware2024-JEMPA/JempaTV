@@ -25,5 +25,13 @@ export class UserService {
     { apiName: this.apiName,...config });
   }
 
+  getErrorQuantity = (config?: Partial<Rest.Config>) => {
+    return this.restService.request({
+      method: 'GET',
+      url: `/api/app/user/get-error-quantity`,
+    },
+    { apiName: this.apiName,...config });
+  }
+
   constructor(private restService: RestService) {}
 }
