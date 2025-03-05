@@ -1,4 +1,4 @@
-<ul class="navbar-nav">
+<ul class="navbar-nav" (abpInit)="this.isAdminUser()">
     <li
       #navbarRootDropdown
       [attr.abpVisibility]="routeContainer"
@@ -14,7 +14,7 @@
         class="nav-link dropdown-toggle"
         data-toggle="dropdown"
         href="javascript:void(0)"
-        *ngIf="(currentUser$ | async)?.isAuthenticated"
+        *ngIf="(currentUser$ | async)?.isAuthenticated && this.isAdmin"
       >
        <!--<i class="fas fa-wrench"></i>-->
         {{ 'AbpUiNavigation::Menu:Administration' | abpLocalization }}

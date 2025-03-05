@@ -63,13 +63,15 @@ img {
   border-right: 1px white solid;
   object-fit:cover;
   width: 284px; 
-   height: 660px; 
+  height: 660px; 
+  box-shadow: inset 25px 10px 71px -31px rgba(0,0,0,0.5);
   }
 
 .poster2 {
     object-fit:cover;
     border-right: 1px white solid;
-   width: 141.01px; height: 660px;  position: relative
+   width: 141.01px; height: 660px;  position: relative;
+  box-shadow: inset 25px 10px 71px -31px rgba(0,0,0,0.5);
 }
 
 .poster-cont {  
@@ -77,10 +79,11 @@ img {
   border-top: 10px solid;
   border-image:   linear-gradient(180deg, #030614 0%, rgba(3, 6, 20, 0) 100%);
   width:fit-content;
-   height: fit-content; 
-   position: absolute;
-   right: 0;
+  height: fit-content; 
+  position: absolute;
+  right: 0;
 }
+
 
 @media (min-width: 1199px) {
   .h-lg-100 {

@@ -12,6 +12,6 @@
     transform: scale(1.2);
 }
 
-.navbar-nav{
-    background: transparent;
+::ng-deep nav{
+    background: transparent !important;
 }

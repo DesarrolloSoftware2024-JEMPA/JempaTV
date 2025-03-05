@@ -20,4 +20,16 @@ namespace JempaTV.WatchLists
         }
 
     }
+
+    public class CreateUpdateWatchListDto
+    {
+        public List<CreateUpdateSerieDto> Series { get; set; }
+
+        public Guid? IdUsuario { get; set; }
+
+        public CreateUpdateWatchListDto()
+        {
+            Series = new List<CreateUpdateSerieDto>();
+        }
+    }
 }

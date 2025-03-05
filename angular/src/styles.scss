@@ -4,6 +4,10 @@
 @import 'swiper/css/pagination';
 @import 'swiper/css/effect-coverflow';
 
+#main-navbar {
+  background: transparent !important;
+}
+
 :root .lpx-theme-dark {
   --lpx-logo: url('/assets/images/logo/logo-light.svg');
   --lpx-logo-icon: url('/assets/images/logo/icon.svg');
@@ -20,9 +24,3 @@
   --lpx-theme-dim-bg: url('/assets/images/login/login-bg-img-dim.svg');
   --lpx-theme-dark-bg: url('/assets/images/login/login-bg-img-dark.svg');
 }
-
-.main-navbar{
-  background: transparent;
-}
-
-

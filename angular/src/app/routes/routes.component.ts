@@ -13,14 +13,25 @@ export class RoutesComponent {
   @HostBinding("class.mx-auto")
   marginAuto = true;
 
-  
+  public isAdmin = false;
   currentUser$: Observable<CurrentUserDto> = this.configState.getOne$('currentUser');
-
+  
   get smallScreen() {
     return window.innerWidth < 992;
   }
 
   constructor(private configState: ConfigStateService){
-
   }
+
+  isAdminUser(){
+    if (this.currentUser$){
+      this.currentUser$.subscribe(x => {
+        if(x.roles[0] == "Admin"){
+          this.isAdmin = true;
+        } else {this.isAdmin = false}
+      })
+    }
+  } 
+
+
 }
