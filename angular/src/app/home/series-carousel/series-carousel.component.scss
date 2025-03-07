@@ -29,14 +29,12 @@ swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
-  transform-style: preserve-3d; /* Mejora el efecto 3D */
-  perspective: 1000px;
+ 
 }
 
 .serie-card {
    background-color: white;
    padding: 7%;
-  
    height: fit-content;
   display: flex;
   flex-direction: column;

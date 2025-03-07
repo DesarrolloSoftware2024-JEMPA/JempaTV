@@ -9,21 +9,18 @@
             
         </form>
     
-    <ngx-datatable
-        *ngIf="series.length"
-        class="material"
-        [rows]="series"
-        [columnMode]="'force'"
-        [headerHeight]="50"
-        [footerHeight]="50"
-        [rowHeight]="'auto'">
-        <ngx-datatable-column name="Título" prop="title"></ngx-datatable-column>
-        <ngx-datatable-column name="Año" prop="year"></ngx-datatable-column>
-        <ngx-datatable-column name="Poster" [sortable]="false">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              <img *ngIf="'row.Poster !== null'" [src]="row.poster" alt="{{ row.title }}" width="100"/>
-            </ng-template>
-        </ngx-datatable-column>
-    </ngx-datatable>
-    </div>
+        <div class="series-container" *ngIf="series.length > 0">
+            <div class="row">
+              <div class="col-md-4 mb-4" *ngFor="let serie of series">
+                <div class="serie-card">
+                  <img [src]="serie.poster" [alt]="serie.title" class="img-fluid serie-poster">
+                  <div class="serie-details">
+                    <h3 class="serie-title">{{ serie.title }}</h3>
+                    <p class="serie-year">{{ serie.year }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
     
