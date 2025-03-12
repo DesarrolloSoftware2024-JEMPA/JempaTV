@@ -12,7 +12,7 @@ export class WatchlistService {
   addSerie = (serieId: number, config?: Partial<Rest.Config>) =>
     this.restService.request<any, void>({
       method: 'POST',
-      url: `/api/app/watchlist/serie/${serieId}`,
+      url: `/api/app/watch-list/serie/${serieId}`
     },
     { apiName: this.apiName,...config });
 

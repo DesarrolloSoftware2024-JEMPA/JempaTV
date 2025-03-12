@@ -45,6 +45,12 @@ namespace JempaTV.Series
             return await _seriesApiService.GetSeriesAsyncImdbId(imdbId);
         }
 
+        public async Task<SerieDto> FindSerieImdbId (string imdbId)
+        {
+            var serie = await _serieRepository.FirstOrDefaultAsync(s => s.ImdbID == imdbId);
+            return _mapper.Map<SerieDto>(serie);
+        }
+
         public async Task PersistSeriesAsync(string title)
         {
             var matchedSeries = await _seriesApiService.GetSeriesAsync(title);

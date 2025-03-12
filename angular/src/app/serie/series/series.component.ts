@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { SerieDto, SerieService } from '@proxy/series';
+import { WatchlistService } from '@proxy/watchlists';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-series',
@@ -11,7 +13,7 @@ export class SeriesComponent {
 
   serieTitle: string = "";
 
-  constructor(private serieService: SerieService) {
+  constructor(private serieService: SerieService, private watchlistService: WatchlistService) {
 
   }
 
@@ -19,6 +21,17 @@ export class SeriesComponent {
     if(this.serieTitle.trim()) {
       this.serieService.search(this.serieTitle.trim()).subscribe(response => this.series = response || []);
     }
+  }
+
+  public async addSerieToWachlist(imdbID:string, title:string){
+
+    this.serieService.persistSeries(title).subscribe(() =>
+      {
+        this.serieService.findSerieImdbId(imdbID).subscribe((x) => {
+          this.watchlistService.addSerie(x.id).subscribe()
+        })
+      });
+    
   }
 
 }

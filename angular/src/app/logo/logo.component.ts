@@ -11,7 +11,7 @@ import { SharedModule } from "../shared/shared.module";
       <img
         src="./assets/images/logo/logo-light.png"
         alt="logo"
-        width="100%"
+        width="150"
         height="auto"
       />
     </a>

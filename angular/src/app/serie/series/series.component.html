@@ -17,7 +17,10 @@
                   <div class="serie-details">
                     <h3 class="serie-title">{{ serie.title }}</h3>
                     <p class="serie-year">{{ serie.year }}</p>
+
+                    <button class="card-btn" (click)="addSerieToWachlist(serie.imdbID, serie.title)">Agregar a Watchlist</button>
                   </div>
+                  
                 </div>
               </div>
             </div>

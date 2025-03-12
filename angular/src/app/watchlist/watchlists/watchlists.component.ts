@@ -47,12 +47,15 @@ export class WatchlistsComponent implements OnInit {
 
   getRowUrl(row){
     const url = "/watchlist/qualify/"+row.id;
-    console.log(url)
     return url;
   }
 
   getUserCalifications(){
     this.serieService.getCalifications().subscribe(x => this.califications = x);
+  }
+
+  editUserCalification(){
+
   }
 
 }

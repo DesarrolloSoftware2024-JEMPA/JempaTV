@@ -87,3 +87,19 @@
     color: #E5E5E5;
     margin: 5px 0 0;
   }
+
+.card-btn{
+  display: flex;
+  padding: 0.5rem;
+  background-color: #2685ff;
+  color: white;
+  z-index: 100;
+  border-radius: 1rem;
+  border: none;
+  transition: 0.2s ease-in-out;
+}
+
+.card-btn:hover{
+  transition: 0.2s ease-in-out;
+  transform: scale(1.1);
+}
