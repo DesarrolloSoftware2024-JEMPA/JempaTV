@@ -25,5 +25,7 @@ public class JempaTVApplicationAutoMapperProfile : Profile
         CreateMap<NotificationDto, Notification>();
         CreateMap<AuditLog, LogDto>();
         CreateMap<LogDto, AuditLog>();
+        CreateMap<Calification, CalificationDto>();
+        CreateMap<CalificationDto, Calification>();
     }
 }

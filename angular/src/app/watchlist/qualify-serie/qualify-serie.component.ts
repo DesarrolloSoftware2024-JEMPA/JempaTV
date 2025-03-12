@@ -14,11 +14,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class QualifySerieComponent  {
  
- 
+  calification = new CalificationDto();
+  idSerie = Number(this.route.snapshot.paramMap.get('id'));
   
-    formulario = new FormGroup({
-    valor: new FormControl('', Validators.required),
-    comentario: new FormControl('', [Validators.required, Validators.minLength(200)])
+  formulario = new FormGroup({
+  valor: new FormControl('', [Validators.required, Validators.max(5), Validators.min(1)]),
+  comentario: new FormControl('', [Validators.minLength(10)])
   });
   
   onSubmit() {
@@ -53,5 +54,12 @@ export class QualifySerieComponent  {
   constructor(private route: ActivatedRoute, private serieService:SerieService){
 
   }
+
+  getCalificationFromSerie(idSerie: number){
+    this.serieService.getCalificationFromSerie(idSerie).subscribe((x)=>{
+      this.calification = x
+    })
+  }
+
 
 }

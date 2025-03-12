@@ -16,6 +16,7 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Users;
+using Volo.Abp;
 
 namespace JempaTV.Series
 {
@@ -141,6 +142,24 @@ namespace JempaTV.Series
             }
 
             
+        }
+
+        public async Task<CalificationDto> GetCalificationFromSerieAsync(int serieId)
+        {
+            try
+            {
+                var serieQueryable = await _serieRepository.WithDetailsAsync(s => s.Calification);
+
+                var series = (await AsyncExecuter.ToListAsync(serieQueryable)).FirstOrDefault(s => s.Id == serieId);
+
+                return _mapper.Map<CalificationDto>(series.Calification);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new UserFriendlyException(ex.Message);
+            }
         }
 
         public async Task AddCalificationAsync(CalificationDto calification)

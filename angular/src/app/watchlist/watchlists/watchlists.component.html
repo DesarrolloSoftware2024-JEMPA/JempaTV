@@ -42,10 +42,12 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Opciones">
+        <ngx-datatable-column name="Opciones" >
           <ng-template let-row='row' ngx-datatable-cell-template >
-            <button>Editar</button>
-            <button>Borrar</button>
+            <div *ngIf="getRowCalification(row)!==undefined">
+              <button [routerLink]="getRowUrl(row)">Editar</button>
+              <button (click)="deleteSerie(row)">Borrar</button>
+            </div>
           </ng-template>
         </ngx-datatable-column>
 

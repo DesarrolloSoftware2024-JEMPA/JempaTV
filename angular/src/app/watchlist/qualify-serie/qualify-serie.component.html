@@ -1,7 +1,9 @@
-<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+<div (abpInit)="this.getCalificationFromSerie(this.idSerie)">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" >
     <div>
       <label for="valor">Valor:</label>
-      <input id="valor" type="number" formControlName="valor">
+      <input *ngIf="this.calification === null" id="valor" type="number" formControlName="valor">
+      <input *ngIf="this.calification !== null" id="valor" type="number" formControlName="valor" [value]="this.calification.valor">
       <div *ngIf="formulario.get('valor').invalid && formulario.get('valor').touched">
         El valor es requerido.
       </div>
@@ -9,13 +11,13 @@
   
     <div>
       <label for="">comentario:</label>
-      <input id="comentario" type="text" formControlName="comentario">
+      <input *ngIf="this.calification === null" id="comentario" type="text" formControlName="comentario">
+      <input *ngIf="this.calification !== null" id="comentario" type="text" formControlName="comentario" [value]="this.calification.comentario">
       <div *ngIf="formulario.get('comentario').invalid && formulario.get('comentario').touched">
         Introduce un comentario válido.
       </div>
     </div>
   
-   
-  
-    <button type="submit" [disabled]="formulario.invalid">Enviar</button>
+    <button type="submit" [disabled]="formulario.invalid" routerLink="/watchlist">Enviar</button>
   </form>
+</div>

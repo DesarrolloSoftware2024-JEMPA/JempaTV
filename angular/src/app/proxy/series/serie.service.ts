@@ -99,5 +99,14 @@ persistSeries = (title:string,config?: Partial<Rest.Config>) =>
   },
   { apiName: this.apiName,...config });
 
+getCalificationFromSerie = (serieId:number,config?: Partial<Rest.Config>) => 
+  this.restService.request<any, CalificationDto>({
+    method: 'GET',
+    url: `/api/app/serie/calification-from-serie/${serieId}`,
+    params: [serieId]
+    
+  },
+  { apiName: this.apiName,...config });
+
   constructor(private restService: RestService) {}
 }

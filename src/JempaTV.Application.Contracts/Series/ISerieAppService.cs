@@ -27,6 +27,8 @@ namespace JempaTV.Series
 
         Task EditCalificationAsync(CalificationDto updateCalification);
 
+        Task<CalificationDto> GetCalificationFromSerieAsync(int serieId);
+
 
     }
 }

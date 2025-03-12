@@ -32,9 +32,9 @@ export class WatchlistsComponent implements OnInit {
     this.watchlistService.addSerie(serieId).subscribe();
   }
 
-  deleteSerieFromWatchlist(serieId:number){
-    this.watchlistService.deleteSerie(serieId).subscribe();
-  }
+  // deleteSerieFromWatchlist(serieId:number){
+  //   this.watchlistService.deleteSerie(serieId).subscribe();
+  // }
 
   getRowCalification(row){
     for (let calif of this.califications)
@@ -54,8 +54,9 @@ export class WatchlistsComponent implements OnInit {
     this.serieService.getCalifications().subscribe(x => this.califications = x);
   }
 
-  editUserCalification(){
-
+  
+  deleteSerie(row){
+    this.serieService.delete(row.id).subscribe();
   }
 
 }
