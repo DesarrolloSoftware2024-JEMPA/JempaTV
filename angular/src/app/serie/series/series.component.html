@@ -1,4 +1,4 @@
-    <div class="home-series">
+    <div class="home-series" (abpInit)="getSeriesFromWatchlist()">
         <h5 class="title-series">Buscar Películas</h5>
         <form (ngSubmit)="searchSeries()">
             
@@ -18,7 +18,9 @@
                     <h3 class="serie-title">{{ serie.title }}</h3>
                     <p class="serie-year">{{ serie.year }}</p>
 
-                    <button class="card-btn" (click)="addSerieToWachlist(serie.imdbID, serie.title)">Agregar a Watchlist</button>
+                    <button class="card-btn" (click)="addSerieToWachlist(serie.imdbID, serie.title)" *ngIf="this.existsInWatchlist(serie.imdbID) === false"> Agregar a mi Watchlist</button>
+                    <button class="card-btn-block" *ngIf="this.existsInWatchlist(serie.imdbID) === true">Agregada en mi Watchlist</button>
+          
                   </div>
                   
                 </div>

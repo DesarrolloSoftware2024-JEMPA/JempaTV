@@ -1,26 +1,25 @@
-/* series-carousel.component.scss */
+
 .series-carousel-container {
   padding: 2rem 0;
   max-width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra el título y el contenido */
+  align-items: center;
   
   h2 {
     text-align: center;
     margin-bottom: 2rem;
     font-size: 2rem;
-    width: 100%; /* Asegura que tome todo el ancho disponible */
+    width: 100%; 
   }
 }
 
 swiper-container {
-  width: 100%;
-  max-width: 1200px; /* Limita el ancho máximo para mejor control */
+  max-width: 100%;
   padding-top: 50px;
   height: fit-content;
-  padding-bottom: 70px; /* Aumenta para dar más espacio a la paginación */
+  padding-bottom: 70px; 
   display: flex;
   justify-content: center;
 }
@@ -33,26 +32,18 @@ swiper-slide {
 }
 
 .serie-card {
-   background-color: white;
-   padding: 7%;
-   height: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s ease;
-  margin: 0 auto; /* Centra la tarjeta */
+background-color:transparent;
+padding: 7%;
+height: fit-content;
+display: flex;
+flex-direction: column;
+align-items: center;
+transition: transform 0.3s ease;
+margin: 0 auto; 
   
   &:hover {
     transform: scale(1.05);
   }
-}
-
-.poster-container {
-  width: 220px;
-  height: 330px;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .serie-poster {
@@ -67,35 +58,13 @@ swiper-slide {
 }
 
 .serie-title {
-  color: black;
+  color: white;
   margin-top: 1rem;
   font-size: 1.2rem;
   font-weight: 600;
   text-align: center;
   width: 100%;
   max-width: 220px; /* Mismo ancho que el poster para alineación */
-}
-
-/* Estilos personalizados para botones de navegación y paginación */
-::ng-deep .swiper-pagination {
-  bottom: 20px !important; /* Ajusta la posición vertical de la paginación */
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-::ng-deep .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
-  background-color: #ffffff;
-  opacity: 0.7;
-  margin: 0 5px; /* Espacio entre los puntos de paginación */
-  
-  &-active {
-    opacity: 1;
-    background-color: #ff5722;
-  }
 }
 
 ::ng-deep .swiper-button-next,

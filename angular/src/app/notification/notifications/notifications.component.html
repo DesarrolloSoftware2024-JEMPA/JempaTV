@@ -15,6 +15,7 @@
     
     <ngx-datatable-column name="Título" prop="title"></ngx-datatable-column>
     <ngx-datatable-column name="Descripción" prop="content"></ngx-datatable-column>
+    <ngx-datatable-column name="Fecha" prop="fechaFormateada"></ngx-datatable-column>
     <ngx-datatable-column name="Leída" >
       <ng-template ngx-datatable-cell-template let-row="row">
         <button (click)="toggleRead(row)" class="btn">

@@ -68,16 +68,17 @@ namespace JempaTV.BackgroundWorker
                 // Podria el usuario tener configurado el tipo de notificacion que quiere recibir y de ahi obtener el Notification.type
                 // Notification.content por ahora sera general, notificará que hubo novedades en la series pertenecientes a su watchlist.
 
-                var notif = new NotificationDto
-                {
-                    Id = watchlist.Id,
-                    Title = "Hay novedades para ti!",
-                    Content = "Nuevos episodios o temporadas para las Series que quieres ver, ve a tu WatchList!",
-                    Type = "Email",
-                    Read = false
-                };
+                //var notif = new NotificationDto(Fecha = DateTime.Now,, )
+                //{
+                //    Id = watchlist.Id,
+                //    Title = "Hay novedades para ti!",
+                //    Content = "Nuevos episodios o temporadas para las Series que quieres ver, ve a tu WatchList!",
+                //    Type = "Email",
+                //    Read = false,
+                    
+                //};
 
-                 await _notificationAppService.SendNotification(notif);
+                 //await _notificationAppService.SendNotification(notif);
 
             }
 

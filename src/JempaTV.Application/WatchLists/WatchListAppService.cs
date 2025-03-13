@@ -128,8 +128,6 @@ namespace JempaTV.WatchLists
 
     
         }
-
-
         public async Task DeleteSerieFromWatchlist(int IdSerie)
         {
             Guid? IdUsuario = _currentUser.Id;
@@ -155,6 +153,8 @@ namespace JempaTV.WatchLists
             await _watchListRepository.UpdateAsync(watchlist);
             
         }
+
+
       
     }
 }

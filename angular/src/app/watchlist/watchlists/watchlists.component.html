@@ -6,8 +6,6 @@
         [headerHeight]="50"
         [footerHeight]="50"
         rowHeight="auto"
-        [bac]
-        
       >
 
       <ngx-datatable-column name="Poster" [sortable]="false">
@@ -44,8 +42,8 @@
 
         <ngx-datatable-column name="Opciones" >
           <ng-template let-row='row' ngx-datatable-cell-template >
-            <div *ngIf="getRowCalification(row)!==undefined">
-              <button [routerLink]="getRowUrl(row)">Editar</button>
+            <div >
+              <button *ngIf="getRowCalification(row)!==undefined" [routerLink]="getRowUrl(row)">Editar</button>
               <button (click)="deleteSerie(row)">Borrar</button>
             </div>
           </ng-template>

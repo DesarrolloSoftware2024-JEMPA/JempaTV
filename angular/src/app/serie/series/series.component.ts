@@ -9,7 +9,9 @@ import { delay } from 'rxjs';
   styleUrl: './series.component.scss'
 })
 export class SeriesComponent {
+
   series = [] as SerieDto[];
+  seriesFromWatchlist = [] as string[];
 
   serieTitle: string = "";
 
@@ -28,10 +30,24 @@ export class SeriesComponent {
     this.serieService.persistSeries(title).subscribe(() =>
       {
         this.serieService.findSerieImdbId(imdbID).subscribe((x) => {
-          this.watchlistService.addSerie(x.id).subscribe()
+          this.seriesFromWatchlist.push(x.imdbID);
+          this.watchlistService.addSerie(x.id).subscribe();
         })
       });
     
+  }
+
+  getSeriesFromWatchlist(){
+    this.watchlistService.getSeries().subscribe(series => {
+      series.forEach(serie => {
+        this.seriesFromWatchlist.push(serie.imdbID)
+      });
+    })
+  }
+
+  existsInWatchlist(imdbID: string){
+    if (this.seriesFromWatchlist.includes(imdbID)) return true; 
+    else return false;
   }
 
 }

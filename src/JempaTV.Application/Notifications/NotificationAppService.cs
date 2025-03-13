@@ -45,6 +45,7 @@ namespace JempaTV.Notifications
                 Type = notif.Type,
                 Read = notif.Read,
                 User = _currentUser.Id,
+                Fecha = DateTime.UtcNow,
 
             };
 
@@ -75,11 +76,6 @@ namespace JempaTV.Notifications
             var notificationDtoList = new Collection<NotificationDto>();
 
             var notificationList = await _notificationRepository.GetListAsync(n => n.User == userId);
-
-            if (!notificationList.Any())
-            {
-                throw new UserFriendlyException("No notifications found for the user.");
-            }
 
             foreach (var notif in notificationList)
             {

@@ -18,5 +18,9 @@ namespace JempaTV.Notifications
         public string? Type { get; set; }
 
         public bool Read {  get; set; }
+
+        public DateTime Fecha { get; set; }
+
+        public string FechaFormateada => Fecha.ToString("dd/MM/yyyy HH:mm");
     }
 }

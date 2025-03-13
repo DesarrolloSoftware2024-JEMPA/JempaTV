@@ -28,10 +28,6 @@ export class WatchlistsComponent implements OnInit {
     this.watchlistService.getSeries().subscribe(x => this.watchlist = x);
   }
 
-  addSerieToWatchlist(serieId: number){
-    this.watchlistService.addSerie(serieId).subscribe();
-  }
-
   // deleteSerieFromWatchlist(serieId:number){
   //   this.watchlistService.deleteSerie(serieId).subscribe();
   // }
@@ -55,7 +51,13 @@ export class WatchlistsComponent implements OnInit {
   }
 
   
-  deleteSerie(row){
+  deleteSerie(row) {
+    console.log(row, this.watchlist);
+    const index = this.watchlist.findIndex(item => item.id === row.id);
+    this.watchlist = [...this.watchlist];
+      if (index !== -1) {
+        this.watchlist.splice(index, 1);
+      }
     this.serieService.delete(row.id).subscribe();
   }
 

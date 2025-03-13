@@ -93,10 +93,20 @@
   padding: 0.5rem;
   background-color: #2685ff;
   color: white;
-  z-index: 100;
   border-radius: 1rem;
   border: none;
   transition: 0.2s ease-in-out;
+}
+
+.card-btn-block{
+  display: flex;
+  padding: 0.5rem;
+  background-color: #b3b6b6;
+  color: white;
+  border-radius: 1rem;
+  border: none;
+  transition: 0.2s ease-in-out;
+  cursor:default;
 }
 
 .card-btn:hover{

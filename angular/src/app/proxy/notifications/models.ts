@@ -6,5 +6,7 @@ export interface NotificationDto extends EntityDto<number> {
     content?: string;
     type?: string;
     read?:boolean;
+    fecha:Date;
+    fechaFormateada: string;
   }
   
