@@ -8,3 +8,13 @@ export interface UserDto extends EntityDto<number> {
   phoneNumber?: string;
   emailNotification?: boolean;
 }
+
+export interface LogDto extends EntityDto<number> {
+  username?: string;
+  executionTime?: string;
+  executionDuration: number;
+  httpMethod?: string;
+  url?: string;
+  exceptions?: string;
+  httpStatusCode?:number;
+}

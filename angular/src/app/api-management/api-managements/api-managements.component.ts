@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '@proxy/users';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { LogDto } from '@proxy/log';
+import { LogDto } from '@proxy/users';
 import { Chart, registerables } from 'chart.js';
 
 
@@ -121,8 +121,10 @@ crearGrafico(actividadPorMes: { [mes: string]: number }) {
         },
       },
       scales: {
+        
         y: {
           beginAtZero: true, // Eje Y comienza en 0
+
         },
       },
     },

@@ -2,7 +2,7 @@ import type { UserDto } from './models';
 import { RestService, Rest } from '@abp/ng.core';
 import { STRING_TYPE } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { LogDto } from '../log/models';
+import { LogDto } from './models';
 
 @Injectable({
   providedIn: 'root',
