@@ -2,6 +2,7 @@ import type { UserDto } from './models';
 import { RestService, Rest } from '@abp/ng.core';
 import { STRING_TYPE } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { LogDto } from '../log/models';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,13 @@ export class UserService {
     },
     { apiName: this.apiName,...config });
   }
-
+  getApiStats = (config?: Partial<Rest.Config>) => {
+    return this.restService.request<any, LogDto[]>({
+      method: 'GET',
+      url: `/api/app/user/get-api-stats`,
+    },
+    { apiName: this.apiName,...config });
+  }
   constructor(private restService: RestService) {}
 }
+

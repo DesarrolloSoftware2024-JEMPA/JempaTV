@@ -34,7 +34,7 @@ swiper-slide {
 .serie-card {
 background-color:transparent;
 padding: 7%;
-height: fit-content;
+height: auto;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -48,7 +48,7 @@ margin: 0 auto;
 
 .serie-poster {
   width: 100%;
-  height: 100%;
+ max-height: 355px;
   object-fit: cover;
   transition: transform 0.3s ease;
   
