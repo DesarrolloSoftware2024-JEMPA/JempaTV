@@ -1,6 +1,7 @@
 import { authGuard, permissionGuard } from '@abp/ng.core';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { adminGuard } from './admin.guard';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
     path: 'api-management',
     loadChildren: () =>
       import('./api-management/api-management.module').then(m => m.ApiManagementModule),
+    canActivate: [adminGuard] 
   },
   {
     path: 'watchlist',
