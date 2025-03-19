@@ -21,12 +21,5 @@ namespace JempaTV.Users
 
         Task<PagedResultDto<IdentityUserDto>> GetAllUsers();
 
-        Task<List<LogDto>> getApiStats();
-
-        Task<int> getErrorQuantity();
-
-        Task<List<LogDto>> getUserStats();
-
-        Task<List<LogDto>> getAllAuditLogs();
     };
 }

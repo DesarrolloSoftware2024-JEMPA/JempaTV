@@ -30,18 +30,14 @@ namespace JempaTV.Users
     public class UserAppService : ApplicationService, IUserAppService
     {
         private readonly ICurrentUser _currentUser;
-        private readonly IMapper _mapper;
         private readonly IIdentityUserAppService _identityUserAppService;
-        private readonly IAuditLogRepository _auditLogRepository;
         private readonly IRepository<IdentityUser> _identityUserRepository;
         
 
-        public UserAppService(IMapper mapper, ICurrentUser currentUser, IIdentityUserAppService identityUserAppService, IAuditLogRepository auditLogRepository, IRepository<IdentityUser> repository)
+        public UserAppService(ICurrentUser currentUser, IIdentityUserAppService identityUserAppService, IRepository<IdentityUser> repository)
         { 
             _currentUser = currentUser;
-            _mapper = mapper;
             _identityUserAppService = identityUserAppService;
-            _auditLogRepository = auditLogRepository;
             _identityUserRepository = repository;
         }
 
@@ -87,67 +83,13 @@ namespace JempaTV.Users
         }
 
         public async Task<PagedResultDto<IdentityUserDto>> GetAllUsers()
-        {
-         
-
+        { 
             return await _identityUserAppService.GetListAsync(new GetIdentityUsersInput());
 
         }
        
 
-        public async Task<List<LogDto>> getApiStats()
-        {
-            var logList = await _auditLogRepository.GetListAsync(l => l.Url.Contains("/api/app/serie"));
-            var logListDto = new List<LogDto>();
 
-            foreach (var log in logList)
-            {
-                logListDto.Add(_mapper.Map<LogDto>(log));
-            }
 
-            return logListDto;
-        }
-
-        public async Task<int> getErrorQuantity()
-        {
-            var logListDto = await getApiStats();
-            var err = 0;
-
-            foreach (var log in logListDto)
-            {
-                if (!log.Exceptions.IsNullOrEmpty())
-                {
-                    err = err + 1;
-                }
-            }
-
-            return err;
-        }
-
-        public async Task<List<LogDto>> getUserStats()
-        {
-            var logList = await _auditLogRepository.GetListAsync(l => l.Url.Contains("/api/identity/users"));
-            var logListDto = new List<LogDto>();
-
-            foreach (var log in logList)
-            {
-                logListDto.Add(_mapper.Map<LogDto>(log));
-            }
-
-            return logListDto;
-        }
-
-        public async Task<List<LogDto>> getAllAuditLogs()
-        {
-            var logList = await _auditLogRepository.GetListAsync();
-            var logListDto = new List<LogDto>();
-
-            foreach (var log in logList)
-            {
-                logListDto.Add(_mapper.Map<LogDto>(log));
-            }
-
-            return logListDto;
-        }
     }
 }

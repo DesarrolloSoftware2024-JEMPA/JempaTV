@@ -1,16 +1,38 @@
-<div class="api-management">
-    <div class="estadisticas-api">
-      <canvas id="myChart"></canvas>
+<div class="api-title">
+  <div class="row-auto ng-star-inserted"><h1 class="content-header-title">Estadísticas</h1></div>
+  <div class="col-lg-auto ps-lg-0 ng-star-inserted">
+    <div>
+      <div>
+        <ol class="breadcrumb ng-star-inserted">
+          <li class="breadcrumb-item">
+            <a routerlink="/" ng-reflect-router-link="/" href="/"
+              ><i aria-hidden="true" class="fa fa-home"></i
+            ></a>
+          </li>
+          <li aria-current="page" class="breadcrumb-item ng-star-inserted">Estadísticas API</li>
+          <li aria-current="page" class="breadcrumb-item active ng-star-inserted">Estadísticas</li>
+        </ol>
       </div>
-
-<div>
-    <div class="errores">
-        <div>
-            <h2>La cantidad de errores es: {{ error}}</h2>   
-          </div>
     </div>
-    <div class="tiempos">
-        <h5>Tiempos de respuesta</h5>
-    </div>
+  </div>
 </div>
+
+<div class="api-management">
+  <div class="estadisticas-api">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <div class="estadisticas-app">
+    <div>
+      <div>
+        <h4>Cantidad total de errores: {{ error }}</h4>
+      </div>
+    </div>
+    <div>
+      <h4>Cantidad total de usuarios: {{ totalUsers }}</h4>
+    </div>
+    <div>
+      <h4>Tiempo promedio de respuesta: {{ executionDuration }} ms</h4>
+    </div>
+  </div>
 </div>

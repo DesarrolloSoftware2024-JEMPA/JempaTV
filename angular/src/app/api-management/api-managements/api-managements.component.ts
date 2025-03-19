@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '@proxy/users';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { LogDto } from '@proxy/users';
+import { LogDto } from '@proxy/logs';
 import { Chart, registerables } from 'chart.js';
+import { LogService } from '@proxy/logs';
 
 
 @Component({
@@ -15,6 +15,8 @@ import { Chart, registerables } from 'chart.js';
 export class ApiManagementsComponent implements OnInit {
   
 public error:number;
+public executionDuration:number;
+public totalUsers:number;
 public apiStats = [] as LogDto[];
 public chart: any;
 
@@ -48,22 +50,21 @@ public labels: string[] = [];
   public lineChartType = 'line';
 
 
-  constructor(private userService: UserService,) {
+  constructor(private logService: LogService,) {
     Chart.register(...registerables);
     
   }
 
   ngOnInit(): void {
     this.getUserError();
-    this.getApiStats();
-     
+    this.getAverageExecutionDuration();
+    this.getTotalUsers();
+    this.getApiStats();   
   
   }
-    
-  
 
   getApiStats() { 
-    this.userService.getApiStats().subscribe((res) => {
+    this.logService.getApiStats().subscribe((res) => {
     this.apiStats=res;
     const actividadPorMes = this.contarActividadPorMes(res);
     this.crearGrafico(actividadPorMes);
@@ -106,7 +107,7 @@ crearGrafico(actividadPorMes: { [mes: string]: number }) {
           label: 'Actividad de la API', // Leyenda del gráfico
           data: actividad, // Datos de actividad por mes
           borderColor: 'rgba(75, 192, 192, 1)', // Color de la línea
-          backgroundColor: 'rgba(75, 192, 192, 0.2)', // Color de fondo
+          backgroundColor: 'rgba(202, 202, 202, 0.2)', // Color de fondo
           borderWidth: 2, // Ancho de la línea
           fill: true, // Rellenar el área bajo la línea
         },
@@ -131,13 +132,25 @@ crearGrafico(actividadPorMes: { [mes: string]: number }) {
   });
 }
 
-
-
   getUserError() { 
-    this.userService.getErrorQuantity().subscribe(res => {
-    console.log(res);
+    this.logService.getErrorQuantity().subscribe(res => {
     if (typeof res === 'number') {
       this.error = res;}
-    
     });
-  }}
+  }
+
+  getTotalUsers() { 
+    this.logService.getTotalUsers().subscribe(res => {
+    if (typeof res === 'number') {
+      this.totalUsers= res;}
+    });
+  }
+
+  getAverageExecutionDuration() { 
+    this.logService.getAverageExecutionDuration().subscribe(res => {
+    if (typeof res === 'number') {
+      this.executionDuration = res;}
+    });
+  }
+
+}

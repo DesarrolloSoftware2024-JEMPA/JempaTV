@@ -1,6 +1,22 @@
 .api-management{
     color: white;
+    display: flex;
+    flex-direction: row;
+    padding-top: 2rem;
 
+}
+
+.api-title{
+    display: flex;
+    flex-direction: row;
+}
+
+.content-header-title{
+    padding-right: 1rem;
+}
+
+#myChart{
+    background-color: white;
 }
 
 .estadisticas-api{
@@ -9,5 +25,14 @@
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
-    padding: 5%;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 0.5rem;
+}
+
+.estadisticas-app{
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    gap: 3rem;
 }
