@@ -46,6 +46,10 @@ const routes: Routes = [
     path: 'my-notifications',
     loadChildren: () =>
       import('./notification/notification-routing.module').then(m => m.NotificationRoutingModule),
+  },{
+    path: 'settings',
+    loadChildren: () =>
+      import('./settings/settings.module').then(m => m.SettingsModule),
   },
 ];
 

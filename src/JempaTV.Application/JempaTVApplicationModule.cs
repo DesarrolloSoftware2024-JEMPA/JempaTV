@@ -19,6 +19,8 @@ using Microsoft.Extensions.Options;
 using JempaTV.Users;
 using JempaTV.Notifications;
 using JempaTV.Logs;
+using Volo.Abp.Settings;
+using JempaTV.Settings;
 
 namespace JempaTV;
 

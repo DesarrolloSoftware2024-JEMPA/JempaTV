@@ -18,9 +18,35 @@ export class UserService {
     { apiName: this.apiName,...config });
 
   getProfilePicture = (config?: Partial<Rest.Config>) => {
-    return this.restService.request({
+    return this.restService.request<any,string>({
       method: 'GET',
       url: `/api/app/user/get-profile-picture`,
+    },
+    { apiName: this.apiName,...config });
+  }
+
+  setProfilePicture = (profilePicture: string, config?: Partial<Rest.Config>) => {
+    return this.restService.request<any,any>({
+      method: 'POST',
+      url: `/api/app/user/set-profile-picture`,
+      params: {profilePicture}
+    },
+    { apiName: this.apiName,...config });
+  }
+
+  getEmailConfig = (config?: Partial<Rest.Config>) => {
+    return this.restService.request<any,string>({
+      method: 'GET',
+      url: `/api/app/user/get-user-email-configuration`,
+    },
+    { apiName: this.apiName,...config });
+  }
+
+  setEmailConfig = (emailNotification: boolean, config?: Partial<Rest.Config>) => {
+    return this.restService.request<any,any>({
+      method: 'POST',
+      url: `/api/app/user/set-user-email-configuration`,
+      params: {emailNotification}
     },
     { apiName: this.apiName,...config });
   }

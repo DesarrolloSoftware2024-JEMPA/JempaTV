@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="form">
+    <div class="card-body ng-tns-c82153552-2">
+      <div class="row ng-tns-c82153552-2">
+        <div class="col-12 col-md-3 ng-tns-c82153552-2">
+          <ul id="nav-tab" role="tablist" class="nav flex-column nav-pills ng-tns-c82153552-2">
+            <li class="nav-item ng-tns-c82153552-2 ng-star-inserted">
+              <a class="nav-link ng-tns-c82153552-2 active">{{ 'AbpSettingManagement::Settings' |
+            abpLocalization }}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-9 ng-tns-c82153552-2 ng-star-inserted">
+          <div class="tab-content ng-tns-c82153552-2 ng-trigger ng-trigger-fadeIn ng-star-inserted">
+            <div class="tab-pane active ng-tns-c82153552-2">
+              <h4 class="ng-tns-c82153552-2">
+                {{ 'AbpSettingManagement::Settings' |
+            abpLocalization }}
+                <hr class="ng-tns-c82153552-2" />
+              </h4>
+              <form class="abp-md-form ng-pristine ng-invalid ng-touched" [formGroup]="this.miFormulario" (ngSubmit)="onSubmit(miFormulario.value)">
+                <div class="mb-3 form-group">
+                  <label  class="form-label">{{ 'AbpUi::ProfilePicture' |
+            abpLocalization }}</label
+                  ><input class="form-control ng-untouched ng-pristine ng-invalid" formControlName="profilePictureUrl" placeholder={{this.profilePicture}}/>
+                </div>
+                <div class="mb-3 form-group">
+                  <label for="confirm-new-password" class="form-label"
+                    >Recibir notificaciones por email</label
+                  ><input type="checkbox" class="px-2 m-4" formControlName="acceptEmails"/>
+                </div>
+                <abp-button
+                  iconclass="fa fa-check"
+                  buttonclass="btn btn-primary color-white"
+                  type="submit"
+                  ><button
+                    ng-reflect-ng-class="btn btn-primary color-white"
+                    type="submit"
+                    class="btn btn-primary color-white"
+                  >
+                    <i class="me-1 fa fa-check" ng-reflect-ng-class="fa fa-check"></i>Guardar
+                  </button></abp-button
+                >
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

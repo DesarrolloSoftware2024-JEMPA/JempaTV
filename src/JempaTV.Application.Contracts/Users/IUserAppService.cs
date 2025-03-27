@@ -15,6 +15,8 @@ namespace JempaTV.Users
 
         Task setUserEmailConfiguration(bool emailNotification);
 
+        Task<string> getUserEmailConfiguration();
+
         Task setProfilePicture(string profilePicture);
 
         Task<string> getProfilePicture();

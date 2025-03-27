@@ -54,6 +54,21 @@ namespace JempaTV.Users
             
         }
 
+        public async Task<string> getUserEmailConfiguration()
+        {
+            var userId = _currentUser.Id;
+            var user = await _identityUserRepository.FirstOrDefaultAsync(u => u.Id == userId);
+            var userEmailConfig = "";
+
+            if (user != null)
+            {
+                userEmailConfig = user.GetProperty<string>("emailNotification");
+            }
+
+            return JsonConvert.SerializeObject(userEmailConfig);
+
+        }
+
         public async Task setProfilePicture(string profilePicture)
         {
             var userId = _currentUser.Id;
