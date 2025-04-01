@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PagedResultDto } from '@abp/ng.core';
 import { NotificationService, NotificationDto } from '@proxy/notifications';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { NavItemsComponent } from 'src/app/nav-items/nav-items.component';
 
 @Component({
   selector: 'app-notifications',
@@ -10,7 +11,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.scss'
 })
-export class NotificationsComponent {
+export class NotificationsComponent{
 
   public notifications: PagedResultDto<NotificationDto>; 
 
@@ -33,7 +34,10 @@ export class NotificationsComponent {
 
   toggleRead(notification: any): void {
     notification.read = !notification.read;
-    // agregar lógica para enviar los cambios al backend usando el servicio.
+    
+    this.notificationService.updateNotification(notification).subscribe();
+
+    
   }
 
 }

@@ -10,7 +10,7 @@ import { SharedModule } from "../shared/shared.module";
       <!-- Change the img src -->
       <img
         src="./assets/images/logo/logo-light.png"
-        alt="logo"
+        alt="Jempa TV Logo"
         width="150"
         height="auto"
       />

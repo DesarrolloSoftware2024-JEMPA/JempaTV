@@ -10,26 +10,13 @@
     gap: 0.5rem;
     margin-bottom: 2rem;
     justify-self: center;
+    width: 100%;
     
-}
-
-.input-series input{
-    width: 20rem;
-}
-
-.input-series button{
-    width: auto;
-    align-self: end;
-    background-color: #2685ff;
-    color: white;
-    padding: 0.4rem;
-    border: white;
-    border-radius: 0.3rem;
 }
 
 /* Contenedor con fondo semitransparente */
 .series-container {
-    background-color: rgb(255, 255, 255); /* Fondo negro con 70% de opacidad */
+    background-color: transparent; /* Fondo negro con 70% de opacidad */
     padding: 20px; /* Espaciado interno */
     border-radius: 10px; /* Bordes redondeados */
     margin: 20px 0; /* Margen exterior */
@@ -90,10 +77,10 @@
 
 .card-btn{
   display: flex;
-  padding: 0.5rem;
-  background-color: #2685ff;
+  padding: 0.7rem 1rem;
+  background-color: #256ecd;
   color: white;
-  border-radius: 1rem;
+  border-radius: 0.4rem;
   border: none;
   transition: 0.2s ease-in-out;
 }
@@ -101,7 +88,7 @@
 .card-btn-block{
   display: flex;
   padding: 0.5rem;
-  background-color: #b3b6b6;
+  background-color: transparent;
   color: white;
   border-radius: 1rem;
   border: none;
@@ -111,5 +98,29 @@
 
 .card-btn:hover{
   transition: 0.2s ease-in-out;
-  transform: scale(1.1);
+  background-color: #2660ac;
+  box-shadow: inset 0.1rem 0.2rem 2.5rem black;
+}
+
+.btn-alt{
+  padding: 1rem 0.6rem;
+  background-color: transparentize($color: rgb(64, 64, 88), $amount: 0.77);
+  border-radius: 0.5rem;
+  color: rgb(214, 214, 214);
+  transition: 0.2s ease-in-out all;
+  border: none;
+
+}
+
+.submit{
+padding: 0 1.2rem;
+}
+
+.search{
+  width: 95%;
+  text-align: start;
+}
+
+.search i{
+  padding: 0 1rem;
 }

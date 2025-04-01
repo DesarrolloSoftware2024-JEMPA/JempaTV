@@ -5,3 +5,10 @@
     border-radius: 0.5rem;
 }
 
+.form-btns{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+}
+

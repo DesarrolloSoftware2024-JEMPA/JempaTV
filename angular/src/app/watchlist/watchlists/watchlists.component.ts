@@ -61,4 +61,12 @@ export class WatchlistsComponent implements OnInit {
     this.serieService.delete(row.id).subscribe();
   }
 
+  insertStars(valor: number, id: string){
+    var div = document.getElementById(id);
+    for (let index = 1; index <= valor; index++) {
+      div.innerHTML += `<span><i class="fa fa-star"></i></span>`
+      
+    }
+  }
+
 }

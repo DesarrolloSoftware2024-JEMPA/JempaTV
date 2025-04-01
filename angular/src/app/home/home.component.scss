@@ -9,6 +9,12 @@
   color: white;
 }
 
+.btn-container{
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
 .btn{
   padding: 0.5rem 1rem;
   background-color: rgb(47, 47, 177);
@@ -21,7 +27,28 @@
 .btn:hover{
   transition: 0.2s ease-in-out all;
   transform: scale(1.05);
-  animation: gradientAnimation 0.5s forwards;}
+  animation: gradientAnimation 0.5s forwards;
+}
+
+.btn-alt{
+  padding: 1rem 0.6rem;
+  background-color: transparentize($color: rgb(64, 64, 88), $amount: 0.77);
+  border-radius: 0.5rem;
+  color: rgb(214, 214, 214);
+  transition: 0.2s ease-in-out all;
+  border: none;
+
+}
+
+.search{
+  width: 85%;
+  text-align: start;
+}
+
+.search i{
+  padding: 0 1rem;
+}
+
 
 .information {
   display: flex;

@@ -21,6 +21,19 @@ export class NotificationService {
       url: '/api/app/notification/unread-notifications'
     }, {apiName: this.apiName,...config})
   
+  sendTestNotification = (config?: Partial<Rest.Config>) =>
+    this.restService.request<any,any>({
+      method: 'POST',
+      url: '/api/app/notification/test-notification'
+    }, {apiName: this.apiName,...config})
+
+  updateNotification = (notification: NotificationDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<NotificationDto,any>({
+      method: 'PUT',
+      url: '/api/app/notification',
+      body: notification
+    }, {apiName: this.apiName,...config})
+      
 
   constructor(private restService: RestService) {}
 

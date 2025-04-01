@@ -6,6 +6,7 @@ import { UserService } from '@proxy/users';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OnInit } from '@angular/core';
+import { NotificationService } from '@proxy/notifications';
 
 
 
@@ -18,15 +19,13 @@ import { OnInit } from '@angular/core';
 })
 export class SettingComponent implements OnInit{
 
-  profilePicture: string = "";
-  emailConfig:boolean = false;
 
   miFormulario = new FormGroup({
     profilePictureUrl: new FormControl(""),
     acceptEmails: new FormControl(false), // Nuevo atributo de usuario.
   });
 
-  constructor(private userService: UserService){
+  constructor(private userService: UserService, private notificationService: NotificationService){
 
   }
 
@@ -43,9 +42,10 @@ export class SettingComponent implements OnInit{
     .subscribe(()=>{if (formData.profilePictureUrl!==""){
       this.userService.setProfilePicture(formData.profilePictureUrl).subscribe()
       }})
+  }
 
-    
-
+  sendTestEmail(){
+    this.notificationService.sendTestNotification().subscribe()
   }
 
 }

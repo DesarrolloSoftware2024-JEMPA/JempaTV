@@ -42,7 +42,6 @@ namespace JempaTV.Notifications
             {
                 Title = notif.Title,
                 Content = notif.Content,
-                Type = notif.Type,
                 Read = notif.Read,
                 User = _currentUser.Id,
                 Fecha = DateTime.UtcNow,
@@ -85,7 +84,7 @@ namespace JempaTV.Notifications
             return notificationDtoList;
         }
         
-        public async Task<string> unreadNotifications()
+        public async Task<string> GetUnreadNotifications()
         {
             var notificationDtoList = await GetNotificationFromUser();
 
@@ -100,6 +99,31 @@ namespace JempaTV.Notifications
             }
 
             return JsonConvert.SerializeObject(response);
+        }
+
+        public async Task TestNotification()
+        {
+            var notification = new NotificationDto()
+            {
+                Fecha = DateTime.Now,
+                Title = "Notificación de prueba",
+                Content = "Si recibiste esta notificacion es porque el sistema funciona correctamente.",
+                Read = false
+            };
+
+            await SendNotification(notification);
+        }
+
+        public async Task UpdateAsync(NotificationDto notificationDto)
+        {
+            var notification = await _notificationRepository.GetAsync(n => n.Id == notificationDto.Id);
+
+            notification.Title = notificationDto.Title;
+            notification.Content = notificationDto.Content;
+            notification.Fecha = notificationDto.Fecha;
+            notification.Read = notificationDto.Read;
+
+            await _notificationRepository.UpdateAsync(notification);
         }
     }
 

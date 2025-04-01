@@ -1,54 +1,21 @@
-<div (abpInit)="getUserCalifications()">
-    <div *ngIf="this.watchlist !== null" class="container">
-        <ngx-datatable
-        class="material"
-        [rows]="watchlist"
-        [headerHeight]="50"
-        [footerHeight]="50"
-        rowHeight="auto"
-      >
-
-      <ngx-datatable-column name="Poster" [sortable]="false">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <img *ngIf="'row.Poster !== null'" [src]="row.poster" alt="{{ row.title }}" width="100"/>
-        </ng-template>
-      </ngx-datatable-column>
-      
-      <ngx-datatable-column name="Título" prop="title"></ngx-datatable-column>
-
-      <ngx-datatable-column name="Año" prop="year"></ngx-datatable-column>
-
-        <ngx-datatable-column name="Calificacion">
-          <ng-template let-row='row' ngx-datatable-cell-template >
-            <div style="border:solid 1px #ddd;margin:5px;padding:3px" *ngIf="getRowCalification(row)!==undefined">
-              <div style="background:#999;height:10px" [style.width]="(getRowCalification(row).valor*100)/5 + '%'"></div>
+<div (abpInit)="getUserCalifications()" class="container">
+    <div class="watchlist" *ngIf="this.watchlist.length>0">
+      <div *ngFor="let serie of this.watchlist" class="series-container">
+        <div class="serie-card">
+          <img [src]="serie.poster" [alt]="serie.title" class="img-fluid serie-poster">
+          <div class="serie-btns">
+            <button *ngIf="getRowCalification(serie)===undefined" [routerLink]="getRowUrl(serie)"><i class="fa fa-heart"></i></button>
+            <button *ngIf="getRowCalification(serie)!==undefined" [routerLink]="getRowUrl(serie)"><i class="fa fa-edit"></i></button>
+            <button (click)="deleteSerie(serie)"><i class="fa fa-trash"></i></button>
+          </div>
+          <div class="serie-details">
+            <h3 class="serie-title">{{ serie.title }}</h3>
+            <div *ngIf="getRowCalification(serie)!==undefined">
+            <p class="serie-year stars" id={{getRowCalification(serie).id}} (abpInit)="insertStars(getRowCalification(serie).valor, getRowCalification(serie).id)"></p>
+            <p class="serie-year">{{getRowCalification(serie).comentario}}</p>
             </div>
-            <div *ngIf="getRowCalification(row)===undefined">
-              <button class="btn border text-s" [routerLink]="getRowUrl(row)">
-                Calificar
-              </button>
-            </div>
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="Tu comentario">
-          <ng-template let-row='row' ngx-datatable-cell-template >
-            <div *ngIf="getRowCalification(row)!==undefined">
-              "{{getRowCalification(row).comentario}}"
-            </div>
-            <div *ngIf="getRowCalification(row)===undefined"></div>
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="Opciones" >
-          <ng-template let-row='row' ngx-datatable-cell-template >
-            <div >
-              <button *ngIf="getRowCalification(row)!==undefined" [routerLink]="getRowUrl(row)">Editar</button>
-              <button (click)="deleteSerie(row)">Borrar</button>
-            </div>
-          </ng-template>
-        </ngx-datatable-column>
-
-      </ngx-datatable>
+          </div>
+        </div>
+      </div>
     </div>
 </div>

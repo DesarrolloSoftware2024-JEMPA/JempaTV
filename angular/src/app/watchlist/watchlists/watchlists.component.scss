@@ -5,4 +5,134 @@
     justify-content: center;
 }
 
+.watchlist{
+    width: fit-content;
+    color: white;
+    border-radius: 0.4rem;
+    border: 2px solid white;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: fit-content;
+    flex-wrap:wrap;
+    padding: 3rem;
+    justify-content: space-between;
 
+}
+
+.serie-btns{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 0;
+    padding: 0.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)); 
+    border-radius: 0 0 0.3rem 0.3rem;
+}
+
+.serie-btns button{
+    background: none;
+    color: white;
+    border: none;
+    padding-right: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.calification{
+    display: flex;
+    flex-direction: row;
+    vertical-align: bottom;
+}
+
+.series-container {
+    background-color: transparent; /* Fondo negro con 70% de opacidad */
+    padding: 1rem; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    margin: 1rem 0; /* Margen exterior */
+    display: flex;
+    
+}
+  
+  /* Estilos para la carta de serie */
+  .serie-card {
+    border-color:  rgba(9,9,121,1);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 20rem;
+  }
+  
+  .serie-card:hover {
+    transform: scale(1.05); /* Efecto de escala en la carta */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-color:  rgba(9,9,121,1);
+  }
+  
+  /* Imagen del póster */
+  .serie-poster {
+    min-width: 20rem;
+    max-width: 20rem;
+    height: 20rem; /* Asegura que la imagen ocupe todo el espacio */
+    object-fit:contain; /* Mantiene la proporción de la imagen */
+    border-radius: 0.8rem;
+    transition: transform 0.3s ease; /* Transición suave para el zoom */
+  }
+  
+  .serie-card:hover .serie-poster {
+    transform: scale(1.1) translateY(-5%); /* Zoom + desplazamiento hacia arriba */
+  }
+  
+  /* Detalles de la serie */
+  .serie-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)); /* Degradado más opaco */
+    padding: 20px; /* Más espacio para el texto */
+    border-radius: 0 0 0.8rem 0.8rem;
+  }
+  
+  .serie-title {
+    font-size: 1.5em; /* Título más grande */
+    margin: 0;
+    color: #FFFFFF;
+    font-weight: bold; /* Texto en negrita */
+  }
+  
+  .serie-year {
+    font-size: 1.2em; /* Año más grande */
+    color: #E5E5E5;
+    margin: 5px 0 0;
+  }
+
+.card-btn{
+  display: flex;
+  padding: 0.7rem 1rem;
+  background-color: #256ecd;
+  color: white;
+  border-radius: 0.8rem;
+  border: none;
+  transition: 0.2s ease-in-out;
+}
+
+.card-btn-block{
+  display: flex;
+  padding: 0.5rem;
+  background-color: transparent;
+  color: white;
+  border-radius: 1rem;
+  border: none;
+  transition: 0.2s ease-in-out;
+  cursor:default;
+}
+
+.card-btn:hover{
+  transition: 0.2s ease-in-out;
+  background-color: #2660ac;
+  box-shadow: inset 0.1rem 0.2rem 2.5rem black;
+}
+
+.stars{
+    color: rgb(240, 240, 28);
+}

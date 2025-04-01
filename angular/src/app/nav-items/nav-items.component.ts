@@ -91,6 +91,11 @@ export class NavItemsComponent {
   }
 
   public hasUnreadNotifications(){
-    this.notificationService.unreadNotifications().subscribe(res => {this.unreadNotifications = res; console.log(res)});
+    this.notificationService.unreadNotifications().subscribe(res => {this.unreadNotifications = res;});
+  }
+
+  public Init(){
+    this.getProfilePicture();
+    this.hasUnreadNotifications();
   }
 }

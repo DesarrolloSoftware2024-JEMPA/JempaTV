@@ -14,6 +14,10 @@ namespace JempaTV.Notifications
 
         Task<Collection<NotificationDto>> GetNotificationFromUser();
 
-        Task<string> unreadNotifications();
+        Task<string> GetUnreadNotifications();
+
+        Task TestNotification();
+
+        Task UpdateAsync(NotificationDto notificationDto);
     }
 }
