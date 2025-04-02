@@ -1,23 +1,27 @@
-<div (abpInit)="this.getCalificationFromSerie(this.idSerie)">
-  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" >
-    <div>
+<div (abpInit)="this.getCalificationFromSerie(this.idSerie)" class="container">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="form">
+    <div class="form_input">
       <label for="valor">Valor:</label>
-      <input *ngIf="this.calification === null" id="valor" type="number" formControlName="valor">
-      <input *ngIf="this.calification !== null" id="valor" type="number" formControlName="valor" [value]="this.calification.valor">
-      <div *ngIf="formulario.get('valor').invalid && formulario.get('valor').touched">
-        El valor es requerido.
+      <div class="form_error">
+        <input *ngIf="this.calification === null" id="valor" type="number" formControlName="valor" class="number">
+        <input *ngIf="this.calification !== null" id="valor" type="number" formControlName="valor" [value]="this.calification.valor" class="number">
+        <div *ngIf="formulario.get('valor').invalid && formulario.get('valor').touched" class="invalid-feedback">
+          El valor es requerido.
+        </div>
       </div>
     </div>
   
-    <div>
-      <label for="">comentario:</label>
-      <input *ngIf="this.calification === null" id="comentario" type="text" formControlName="comentario">
-      <input *ngIf="this.calification !== null" id="comentario" type="text" formControlName="comentario" [value]="this.calification.comentario">
-      <div *ngIf="formulario.get('comentario').invalid && formulario.get('comentario').touched">
+    <div class="form_input">
+      <label for="">Comentario:</label>
+      <div class="form_error">
+        <input *ngIf="this.calification === null" id="comentario" type="text" formControlName="comentario" class="text">
+      <input *ngIf="this.calification !== null" id="comentario" type="text" formControlName="comentario" [value]="this.calification.comentario" class="text">
+      <div *ngIf="formulario.get('comentario').invalid && formulario.get('comentario').touched" class="invalid-feedback">
         Introduce un comentario válido.
       </div>
+      </div>
     </div>
   
-    <button type="submit" [disabled]="formulario.invalid">Enviar</button>
+    <button type="submit" class="form_btn" [disabled]="formulario.invalid">Enviar</button>
   </form>
 </div>

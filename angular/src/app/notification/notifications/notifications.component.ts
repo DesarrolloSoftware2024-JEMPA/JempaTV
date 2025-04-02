@@ -25,10 +25,10 @@ export class NotificationsComponent{
     .subscribe(notifications => this.notifications = notifications)
   }
 
-  getRowClass = (row) => { 
+  getClass = (row) => { 
     return {
-        'row-color1': row.read == false,
-        'row-color2': row.read == true,
+        'not-read': row.read == false,
+        'read': row.read == true,
     };
   }
 

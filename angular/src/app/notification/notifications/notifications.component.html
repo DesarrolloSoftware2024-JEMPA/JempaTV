@@ -1,29 +1,20 @@
-<div class="notifications" (abpInit)="getNotificationsFromUser()">
-    <h5 style="color: white;">Notificaciones: </h5>
-
-    <ngx-datatable
-    *ngIf="notifications"
-    class="material"
-    [rows]="notifications"
-    [columnMode]="'force'"
-    [headerHeight]="20"
-    [footerHeight]="20"
-    [rowClass]="getRowClass"
-    [rowWidth]="20"
-    [rowHeight]="'auto'"
-    style="color: black;">
-    
-    <ngx-datatable-column name="Título" prop="title"></ngx-datatable-column>
-    <ngx-datatable-column name="Descripción" prop="content"></ngx-datatable-column>
-    <ngx-datatable-column name="Fecha" prop="fechaFormateada"></ngx-datatable-column>
-    <ngx-datatable-column name="Leída" >
-      <ng-template ngx-datatable-cell-template let-row="row">
-        <button (click)="toggleRead(row)" class="btn">
-          <i class="fa fa-check-circle" aria-hidden="true" *ngIf="row.read===true"></i>
-          <i class="fa fa-circle" aria-hidden="true" *ngIf="row.read===false"></i>
-        </button>
-      </ng-template>
-    </ngx-datatable-column>
-
-    </ngx-datatable>
-  </div>
+<div class="container" (abpInit)="getNotificationsFromUser()">
+    <h4 class="title">Mis notificaciones </h4>
+    <div class="notification-container" *ngIf="this.notifications!==null">
+      <div *ngFor="let notification of this.notifications" >
+        <div [ngClass]="{notification: true, read:notification.read}">
+          <img [src]="this.notification.poster" [alt]="notification.title" class="notification_poster">
+          <div class="notif-text">
+            <div class="notif-title">{{notification.title}}</div>
+            <div class="notif-content">{{notification.content}}</div>
+            <div class="notif-date">{{notification.fechaFormateada}}</div>
+          </div>
+          <div class="btns"> 
+          <button class="btn" (click)="this.toggleRead(notification)"><i class="fa fa-eye"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h1 class="not-found" *ngIf="this.notifications===null">Mi watchlist está vacía...</h1>
+  
+</div>

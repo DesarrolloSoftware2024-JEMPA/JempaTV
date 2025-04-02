@@ -12,9 +12,9 @@
       <div>
         <div class="btn-container">
           <button routerLink="/series" class="btn-alt search">
-            <i class="fa fa-search"></i>
+            <i class="fa fa-search light"></i>
           </button>
-          <button routerLink="/watchlist" class="btn-alt watchlist"><i class="fa fa-list"></i></button>
+          <button routerLink="/watchlist" class="btn-alt watchlist"><i class="fa fa-list light"></i></button>
         </div>
       </div>
       <div class="btn-alt" >
@@ -22,13 +22,14 @@
           *ngIf="!this.unreadNotifications"
           class="fa fa-bell"
           aria-hidden="true"
+          style="cursor: pointer;"
           routerLink="/my-notifications"
         ></i>
         <i
           *ngIf="this.unreadNotifications"
           class="fa fa-bell"
           aria-hidden="true"
-          style="color: #0e66e9"
+          style="color: #0e66e9; cursor: pointer;"
           routerLink="/my-notifications"
         ></i>
       </div>
@@ -58,11 +59,11 @@
         />
       </a>
       <div
-        class="dropdown-menu dropdown-menu-right border-0 shadow-sm"
+        class="dropdown-menu dropdown-menu-right border-0 shadow-sm "
         aria-labelledby="dropdownMenuLink"
         [class.d-block]="smallScreen && currentUserDropdown.isOpen()"
       >
-        <h5>{{ (currentUser$ | async)?.userName }}</h5>
+        <p class="username">{{ (currentUser$ | async)?.userName }}</p>
         <a class="dropdown-item pointer" routerLink="/settings"
           ><i class="fa fa-cog mr-1 p-1"></i
           >{{ 'AbpSettingManagement::Settings' | abpLocalization }}</a

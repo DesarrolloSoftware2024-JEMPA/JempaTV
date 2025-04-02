@@ -4,6 +4,11 @@
 @import 'swiper/css/pagination';
 @import 'swiper/css/effect-coverflow';
 
+body{
+  background: radial-gradient(circle, rgba(3,2,52,1) 0%, rgba(9,9,121,1) 0%, rgba(2,0,36,1) 88%);
+  overflow-x: hidden;
+}
+
 #main-navbar {
   background: transparent !important;
 }

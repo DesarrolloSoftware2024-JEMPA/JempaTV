@@ -11,13 +11,11 @@ namespace JempaTV.Notifications
     {
 
         public string? Title { get; set; }
-
         public Guid? User {  get; set; }
-        
         public string? Content { get; set; }
-
         public bool Read { get; set; }
-
         public DateTime Fecha {  get; set; }
+        public string? OmdbId {  get; set; }
+        public string? Poster {  get; set; }
     }
 }
