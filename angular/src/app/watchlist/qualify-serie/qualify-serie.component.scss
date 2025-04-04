@@ -1,68 +1,130 @@
 .container{
-    width: 100%;
-    height: auto;
+display: flex;
+flex-direction: row;
+color: white;
+justify-content: space-evenly;
+}
+
+.serie_container{
+display: flex;
+flex-direction: column;
+gap: 2rem;
+align-items: center;
+}
+
+.serie-card {
+border-color:  rgba(9,9,121,1);
+position: relative;
+overflow: hidden;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+height: 20rem;
+width: 15rem;
+}
+
+.serie_plot{
+    width: 30rem;
+    font-weight: 400;
+    margin: 1rem;
+}
+
+.serie-card:hover {
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+border-color:  rgba(9,9,121,1);
+}
+
+.serie-poster {
+min-width: 15rem;
+max-width: 15rem;
+height: 15rem; 
+object-fit:contain; 
+border-radius: 0.8rem;
+transition: transform 0.3s ease; 
+}
+
+.serie-details {
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)); 
+padding: 1.5rem;
+border-radius: 0 0 0.8rem 0.8rem;
+color: white;
+}
+
+.serie-title {
+font-size: 1.2rem;
+margin: 0;
+font-weight: bold; 
+margin: 0 0.5rem 0.5rem 0;
+}
+
+.serie-year {
+font-size: 0.8rem;
+}
+
+.form_container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .form{
-    color: white;
-    background-color: transparentize($color: #000000, $amount: 0.9);
-    min-width: fit-content;
     width: 30rem;
-    height: auto;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding: 1rem;
-    border-radius: 0.8rem;
-    border: 1px solid white;
+    gap: 3rem;
 }
 
-.error{
-    color: rgba(255, 255, 255, 0.66);
-    font-weight: 800;
+label{
+    font-weight: 500;
+    font-size: medium;
 }
 
-.form_input{
+.inputs{
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    gap: 1rem;
+    flex-direction: column;
+    align-items: start;
+}
+
+.form_input input{
+    padding: 0rem 0.5rem;
+    border-radius: 0.2rem;
+    border: none;
+    margin: 1rem;
+}
+
+.number{
+width: 4rem;
+}
+
+.text{
+    width: 15rem;
+    height: 4rem;
 }
 
 .form_error{
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    flex-direction: row;
+    padding: 0;
 }
 
-.form_input input{
-    border: none;
-    border-radius: 0.6rems;
-    color: white;
-    background-color: transparent;
-    border: 1px solid white;
-}
-
-.text{
-    width: 90%;
-    height: 5rem;
-}
-
-.number{
-    width: 5rem;
+.invalid_feedback{
+    margin: 0;
 }
 
 .form_btn{
-    width: 6rem;
-    background-color: blue;
+    width: 8rem;
     border: none;
-    border-radius: 0.3rem;
-    padding: 0.5rem 1rem;
-    align-self: flex-end;
-    margin: 0 2rem 2rem 0;
+    padding: 0.5rem 0.9rem;
     color: white;
+    background-color: #007aff;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.form_btn:active{
+    transition: transform 0.3s ease;
+    transform: scale(0.95);
+    cursor: pointer;
+    opacity: 0.9;
 }

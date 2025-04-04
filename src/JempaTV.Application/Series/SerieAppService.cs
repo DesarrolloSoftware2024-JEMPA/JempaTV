@@ -54,7 +54,7 @@ namespace JempaTV.Series
 
         public async Task PersistSeriesAsync(string title)
         {
-            var matchedSeries = await _seriesApiService.GetSeriesAsync(title);
+            var matchedSeries = await _seriesApiService.GetDetailedSerieAsync(title);
 
             var listSeries = new List<Serie>();
 
@@ -75,7 +75,6 @@ namespace JempaTV.Series
 
             await _serieRepository.InsertManyAsync(listSeries);
         }
-
 
         public async Task<Collection<SerieDto>> GetInternalSeries()
         {

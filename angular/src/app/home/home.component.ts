@@ -4,9 +4,6 @@ import { ConfigStateService  } from '@abp/ng.core';
 import { SerieDto, SerieService } from '@proxy/series';
 import { register } from "swiper/element/bundle";
 
-
-
-
 register();
 
 @Component({

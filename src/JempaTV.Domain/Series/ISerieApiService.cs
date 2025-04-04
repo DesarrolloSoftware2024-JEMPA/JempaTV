@@ -10,6 +10,8 @@ namespace JempaTV.Series
     {
         Task<ICollection<SerieDto>> GetSeriesAsync(string title);
 
+        Task<ICollection<SerieDto>> GetDetailedSerieAsync(string title);
+
         Task<SerieDto> GetSeriesAsyncImdbId(string imdbId);
 
     }

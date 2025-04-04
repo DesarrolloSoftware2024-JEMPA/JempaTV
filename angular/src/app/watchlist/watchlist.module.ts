@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WatchlistRoutingModule } from './watchlist-routing.module';
+import { RecomendedSeriesModule } from '../recomended-series/recomended-series.module';
 
 
 
@@ -8,7 +9,8 @@ import { WatchlistRoutingModule } from './watchlist-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    WatchlistRoutingModule
+    WatchlistRoutingModule,
+    RecomendedSeriesModule
   ]
 })
 export class WatchlistModule { }

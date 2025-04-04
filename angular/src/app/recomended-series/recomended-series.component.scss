@@ -1,0 +1,30 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    color: white;
+}
+
+.series-carousel-container{
+    width: auto;
+    height: fit-content;
+}
+
+.serie-card{
+    margin: 0.5rem;
+    width: 10rem;
+    height: 26rem;
+    padding: 1rem;
+
+}
+
+.poster-container{
+    margin: 2rem;
+}
+
+.serie-poster{
+    width: 15rem;
+    height: 20rem;
+    object-fit: fill;
+
+}

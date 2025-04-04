@@ -1,3 +1,12 @@
+/* NO LOGED HOME COMPONENT */
+
+.container{
+  height: fit-content;
+}
+
+.text_container{
+  padding-bottom: 15rem;
+}
 
 .title{
   z-index: 100;
@@ -60,21 +69,6 @@
   width: 40%;
   flex-direction: column;
   align-items: self-start;
-}
-
-.series-section {
-  color: white;
-  padding: 40px 20px;
-  text-align: center;
-}
-.series-section__title {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-.series-section__description {
-  font-size: 1.1rem;
-  max-width: 600px;
-  margin: 0 auto 40px;
 }
 
 img {

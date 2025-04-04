@@ -4,6 +4,9 @@ import { SerieService } from '@proxy/series';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ActivatedRoute } from '@angular/router';
+import { SerieDto } from '@proxy/series';
+import { OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-qualify-serie',
@@ -12,10 +15,11 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './qualify-serie.component.html',
   styleUrl: './qualify-serie.component.scss'
 })
-export class QualifySerieComponent  {
+export class QualifySerieComponent implements OnInit{
  
   calification = new CalificationDto();
   idSerie = Number(this.route.snapshot.paramMap.get('id'));
+  serie: SerieDto;
   
   formulario = new FormGroup({
   valor: new FormControl('', [Validators.required, Validators.max(5), Validators.min(1)]),
@@ -33,9 +37,8 @@ export class QualifySerieComponent  {
 
       // Envía los datos a la base de datos usando el servicio
       this.serieService.addCalification(calificationData).subscribe({
-        next: (response) => {
-          console.log('Datos enviados correctamente', response);
-          alert('Datos guardados exitosamente');
+        next: () => {
+          this.router.navigate(['/watchlist'])
         },
         error: (error) => {
           console.error('Error al enviar los datos', error);
@@ -51,14 +54,22 @@ export class QualifySerieComponent  {
     this.serieService.addCalification(calification).subscribe();
   }
 
-  constructor(private route: ActivatedRoute, private serieService:SerieService){
+  constructor(private route: ActivatedRoute, private serieService:SerieService, private router: Router){
 
   }
 
+  ngOnInit(): void {
+    this.getSerie(this.idSerie);
+  }
+
   getCalificationFromSerie(idSerie: number){
-    this.serieService.getCalificationFromSerie(idSerie).subscribe((x)=>{
+    this.serieService.getCalificationFromSerie(idSerie).subscribe(x=>
       this.calification = x
-    })
+    )
+  }
+
+  getSerie(idSerie: number){
+    this.serieService.get(idSerie).subscribe(s => {this.serie = s; console.log(s)})
   }
 
 

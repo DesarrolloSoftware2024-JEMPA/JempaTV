@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { APP_ROUTE_PROVIDER } from './route.provider';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FooterComponent } from "./footer/footer.component";
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,8 +27,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ThemeSharedModule,
     CoreModule,
     ThemeBasicModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    FooterComponent
+],
   providers: [
     APP_ROUTE_PROVIDER,
     provideAbpCore(

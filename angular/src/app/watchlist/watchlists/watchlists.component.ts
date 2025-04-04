@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CalificationDto, SerieDto, SerieService } from '@proxy/series';
 import { WatchlistService } from '@proxy/watchlists';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { RecomendedSeriesModule } from "../../recomended-series/recomended-series.module";
 
 @Component({
   selector: 'app-watchlists',
   standalone: true,
-  imports: [SharedModule],
+  imports: [SharedModule, RecomendedSeriesModule],
   templateUrl: './watchlists.component.html',
   styleUrl: './watchlists.component.scss'
 })

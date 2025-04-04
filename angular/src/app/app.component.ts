@@ -4,12 +4,15 @@ import { eThemeBasicComponents } from '@abp/ng.theme.basic';
 import { LogoComponent } from './logo/logo.component';
 import { RoutesComponent } from './routes/routes.component';
 import { NavItemsComponent } from './nav-items/nav-items.component';
+import { FooterComponent } from './footer/footer.component';
 
 @Component({
   selector: 'app-root',
   template: `
     <abp-loader-bar></abp-loader-bar>
    <abp-dynamic-layout></abp-dynamic-layout>
+   <app-footer></app-footer>
+   
   `,
 })
 export class AppComponent {

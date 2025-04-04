@@ -1,41 +1,39 @@
 <div>
   @if(!hasLoggedIn){
 
-  <div class="poster-cont">
-    <img class="poster" src="../../assets/images/home/3a78a1d88fb77bfae19757ed4abdcb59.png" />
-    <img class="poster2" src="../../assets/images/home/f8849cfe0b2dab0265c1643ed2ea78e7.png" />
-    <img class="poster2" src="../../assets/images/home/eed8b6da07ef5126b4d80a675f38dcd1.png" />
-    <img class="poster2" src="../../assets/images/home/dbfc0cd3e50de0802b0d61632a0680f7.png" />
-    <img class="poster2" src="../../assets/images/home/Picture.png" />
-  </div>
+    <div class="container">
+      <div class="poster-cont">
+        <img class="poster" src="../../assets/images/home/3a78a1d88fb77bfae19757ed4abdcb59.png" />
+        <img class="poster2" src="../../assets/images/home/f8849cfe0b2dab0265c1643ed2ea78e7.png" />
+        <img class="poster2" src="../../assets/images/home/eed8b6da07ef5126b4d80a675f38dcd1.png" />
+        <img class="poster2" src="../../assets/images/home/dbfc0cd3e50de0802b0d61632a0680f7.png" />
+        <img class="poster2" src="../../assets/images/home/Picture.png" />
+      </div>
+    
+      <div class="text_container">
+        
+        <p class="title">JempaTV</p>
+        
+        <div class="information">
+          <p>La plataforma de streaming que dispone las mejores series y películas.</p>
+          <p>Disfruta en cualquier dispositivo, ve donde y cuando quieras.</p>
+          <p>Inicia sesión para explorar nuestro catálogo, ¡Tu próxima maratón comienza aquí!</p>
+        </div>
+      
+        <a (click)="login()" class="btn" role="button">
+          <i class="fa fa-sign-in"></i>
+          {{ 'AbpAccount::Iniciar sesión' | abpLocalization }}
+        </a>
+      </div>
+    </div>
 
-  <div class="title">
-    <p class="text-title">JempaTV</p>
-  </div>
-
-  <div class="information">
-    <p>La plataforma de streaming que dispone las mejores series y películas.</p>
-    <p>Disfruta en cualquier dispositivo, ve donde y cuando quieras.</p>
-    <p>Inicia sesión para explorar nuestro catálogo, ¡Tu próxima maratón comienza aquí!</p>
-  </div>
-
-  <a (click)="login()" class="btn" role="button">
-    <i class="fa fa-sign-in"></i>
-    {{ 'AbpAccount::Iniciar sesión' | abpLocalization }}
-  </a>
   } @if(hasLoggedIn){
 
-
-
-
-    <section class="series-section">
-    <h2 class="series-section__title">Nuestras Series</h2>
-    <p class="series-section__description">
-      Explora nuestra amplia colección de series. Encuentra tus favoritas y descubre nuevas
-      recomendaciones.
-    </p>
-
+  <section class="series-section">
     <app-series-carousel></app-series-carousel>
+  </section>
+  <section>
+    <app-recomended-series></app-recomended-series>
   </section>
   }
 </div>

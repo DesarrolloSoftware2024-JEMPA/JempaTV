@@ -38,7 +38,7 @@
               }
             ],
             "styles": [
-              "src/styles.scss",
+              
               {
                 "input": "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
                 "inject": true,
@@ -78,7 +78,8 @@
                 "input": "node_modules/ng-zorro-antd/tree/style/index.min.css",
                 "inject": false,
                 "bundleName": "ng-zorro-antd-tree"
-              }
+              },
+              "src/styles.scss"
             ],
             "scripts": []
           },

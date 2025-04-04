@@ -1,27 +1,78 @@
-<div (abpInit)="this.getCalificationFromSerie(this.idSerie)" class="container">
-  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="form">
-    <div class="form_input">
-      <label for="valor">Valor:</label>
-      <div class="form_error">
-        <input *ngIf="this.calification === null" id="valor" type="number" formControlName="valor" class="number">
-        <input *ngIf="this.calification !== null" id="valor" type="number" formControlName="valor" [value]="this.calification.valor" class="number">
-        <div *ngIf="formulario.get('valor').invalid && formulario.get('valor').touched" class="invalid-feedback">
-          El valor es requerido.
+<div class="container">
+  <div class="serie_container" *ngIf="this.serie !== null">
+    <div class="serie-card">
+      <img [src]="this.serie.poster" [alt]="serie.title" class="img-fluid serie-poster" />
+      <div class="serie-details">
+        <h3 class="serie-title">{{ serie.title }}</h3>
+        <div>
+          <p class="serie-year">{{ serie.year }}</p>
         </div>
       </div>
     </div>
-  
-    <div class="form_input">
-      <label for="">Comentario:</label>
-      <div class="form_error">
-        <input *ngIf="this.calification === null" id="comentario" type="text" formControlName="comentario" class="text">
-      <input *ngIf="this.calification !== null" id="comentario" type="text" formControlName="comentario" [value]="this.calification.comentario" class="text">
-      <div *ngIf="formulario.get('comentario').invalid && formulario.get('comentario').touched" class="invalid-feedback">
-        Introduce un comentario válido.
-      </div>
-      </div>
+    <div class="serie_plot">
+      <h6>{{ serie.plot }}</h6>
+      <h6>{{ serie.actors }}</h6>
     </div>
-  
-    <button type="submit" class="form_btn" [disabled]="formulario.invalid">Enviar</button>
-  </form>
+  </div>
+  <div class="form_container" (abpInit)="this.getCalificationFromSerie(this.idSerie)">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="form">
+      <div class="inputs">
+        <div class="form_input">
+          <label for="valor">Valor:</label>
+          <div class="form_error">
+            <input
+              *ngIf="this.calification === null"
+              id="valor"
+              type="number"
+              formControlName="valor"
+              class="number"
+              min="{{ 0 }}"
+              max="{{ 5 }}"
+            />
+            <input
+              *ngIf="this.calification !== null"
+              id="valor"
+              type="number"
+              formControlName="valor"
+              [value]="this.calification.valor"
+              style="color: black"
+              class="number"
+              min="{{ 0 }}"
+              max="{{ 5 }}"
+            />
+            <div
+              *ngIf="formulario.get('valor').invalid && formulario.get('valor').touched"
+              class="invalid-feedback"
+            ></div>
+          </div>
+        </div>
+
+        <div class="form_input">
+          <label for="">Comentario:</label>
+          <div class="form_error">
+            <input
+              *ngIf="this.calification === null"
+              id="comentario"
+              type="text"
+              formControlName="comentario"
+              class="text"
+            />
+            <input
+              *ngIf="this.calification !== null"
+              id="comentario"
+              type="text"
+              formControlName="comentario"
+              [value]="this.calification.comentario"
+              class="text"
+            />
+            <div
+              *ngIf="formulario.get('comentario').invalid && formulario.get('comentario').touched"
+              class="invalid-feedback"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="form_btn" [disabled]="formulario.invalid">Calificar</button>
+    </form>
+  </div>
 </div>

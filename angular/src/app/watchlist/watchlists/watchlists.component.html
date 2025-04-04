@@ -1,5 +1,6 @@
 <div (abpInit)="getUserCalifications()" class="container">
-  <h4>Mi watchlist</h4>
+  <div>
+    <h4>Mi watchlist</h4>
     <div class="watchlist" *ngIf="this.watchlist.length>0">
       <div *ngFor="let serie of this.watchlist" class="series-container">
         <div class="serie-card">
@@ -19,4 +20,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div>
+    <app-recomended-series></app-recomended-series>
+  </div>
 </div>
