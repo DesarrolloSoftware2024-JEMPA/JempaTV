@@ -4,6 +4,7 @@ import SwiperCore from 'swiper';
 import { register } from 'swiper/element/bundle';
 import { EffectCoverflow, Navigation, Pagination } from 'swiper/modules';
 import { SerieDto, SerieService } from '@proxy/series';
+import { forkJoin, Observable} from 'rxjs';
 
 // Registrar los módulos de Swiper que necesitamos
 SwiperCore.use([EffectCoverflow, Navigation, Pagination]);
@@ -14,31 +15,32 @@ SwiperCore.use([EffectCoverflow, Navigation, Pagination]);
   styleUrls: ['./series-carousel.component.scss']
 })
 export class SeriesCarouselComponent implements OnInit {
-  // Arreglo de series (reemplaza con tu modelo de datos real)
-  public imdbIds = ["tt5753856","tt5607976","tt11912196","tt19231492","tt4159076","tt0204993"];
+
+  public imdbIds = ["tt16366836","tt13186482","tt27714946","tt29623480","tt32560777","tt4772188", "tt0096697", "tt4154796", "tt3566834", "tt13622970"];
 
   public series = [] as SerieDto[];
 
   constructor(private serieService: SerieService) {
-    // Registrar elementos personalizados de Swiper
     register();
-    
   }
 
   ngOnInit(): void { 
-    this.getSeriesList(this.imdbIds)
+    this.getSeriesList()
   }
-  getSerieImdbId(imdbId: string) {
-    var serieDto: SerieDto;
-    this.serieService.searchImdbId(imdbId).subscribe(res => {
-      serieDto = res;
-      this.series.push(serieDto);
-    });
+  
+  getSerieImdbId(imdbId: string): Observable<SerieDto> {
+    return this.serieService.searchImdbId(imdbId);
+  }
+
+
+getSeriesList() {
+  const requests = this.imdbIds.map(id => this.getSerieImdbId(id));
+
+  forkJoin(requests).subscribe(results => {
+    this.series = results;
+  });
 }
 
-getSeriesList(imdbId:string[]){
-  imdbId.forEach(id => {
-    this.getSerieImdbId(id)})
-}}
-  
+
+}
   

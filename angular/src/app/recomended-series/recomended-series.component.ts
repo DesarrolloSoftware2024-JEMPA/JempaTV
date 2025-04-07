@@ -14,7 +14,7 @@ SwiperCore.use([EffectCoverflow, Navigation, Pagination]);
 })
 export class RecomendedSeriesComponent implements OnInit {
 
-  public imdbIds = ["tt5753856", "tt5607976", "tt11912196", "tt19231492", "tt4159076", "tt0204993"];
+  public imdbIds = ["tt5753856", "tt5607976", "tt11912196", "tt19231492", "tt4159076", "tt0204993", "tt32551602", "tt4772188", "tt5433114"];
 
   public series = [] as SerieDto[];
 

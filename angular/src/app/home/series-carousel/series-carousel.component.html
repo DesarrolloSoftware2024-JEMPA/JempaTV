@@ -1,7 +1,7 @@
 <!-- series-carousel.component.html -->
 <div class="series-carousel-container">
   <div class="top10_row">
-    <p class="top10">Top 10</p>
+    <p class="top10">TOP 10</p>
     <div class="top10_col"><p class="to">Series</p><p>Hoy</p></div>
   </div>
   <swiper-container
@@ -11,7 +11,7 @@
   >
     <swiper-slide *ngFor="let serie of series">
       <div class="serie-card">
-        <p class="serie-position">1</p>
+        <p class="serie-position">{{series.indexOf(serie)+1}}</p>
         <div class="poster-container">
           <img [src]="serie.poster" [alt]="serie.title" class="serie-poster">
         </div>

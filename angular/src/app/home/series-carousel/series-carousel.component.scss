@@ -11,9 +11,7 @@
 
 swiper-container {
   max-width: 100%;
-  padding-top: 50px;
-  height: fit-content;
-  padding-bottom: 70px; 
+  height: fit-content; 
   display: flex;
   justify-content: center;
 }
@@ -31,13 +29,18 @@ padding: 7%;
 height: auto;
 display: flex;
 flex-direction: row;
-align-items: center;
+align-items: baseline;
 margin: 0 auto; 
+height: fit-content;
+justify-content: flex-end;
 }
 
 .serie-card:hover .serie-position {
   transform: scale(1.2);
-  transition: all 0.3s ease;
+  left: -2%;
+  color: white;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
 }
 
 
@@ -45,6 +48,7 @@ margin: 0 auto;
   width: 15rem;
   height: 20rem;
   object-fit: fill;
+  box-shadow: black 0.5rem 0 3rem;
 }
 
 .top10_row{
@@ -64,16 +68,20 @@ align-self: flex-start;
 }
 
 .serie-position{
-  font-size: 7rem;
+  font-size: 15rem;
   position: fixed;
   z-index: -1;
-  left: 13%;
+  left: 0;
   font-weight: 900;
+  color: #030129;
+  -webkit-text-stroke: 0.2rem #08086eff;
+  transition: all 0.3s ease-in-out;
 }
 
-
-
-
 .top10{
-  font-size: 4rem;
+  font-size: 5rem;
+  font-family: "Overpass", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bolder;
+  font-style: normal;
 }
