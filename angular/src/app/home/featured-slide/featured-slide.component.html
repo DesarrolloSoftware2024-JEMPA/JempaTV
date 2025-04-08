@@ -1,0 +1,42 @@
+<!-- series-carrousel.component.html -->
+<div class="featured-slider">
+    <swiper-container
+    slidesPerView="1" 
+    spaceBetween="0" 
+    navigation="true" 
+    pagination="{ clickable: true }" 
+    effect="fade" 
+    fadeEffect="{ crossFade: true }" 
+    autoplay="{ delay: 5000, disableOnInteraction: false }" 
+      class="swiper">
+      <swiper-slide *ngFor="let serie of series">
+        <div class="hero-slide">
+          <!-- Capa de fondo con imagen desenfocada -->
+          <div class="background-blur" [style.background-image]="'url(' + serie.poster + ')'"></div>
+          
+          <!-- Contenedor de contenido -->
+          <div class="content-wrapper">
+            <!-- Poster original (sin estirar) -->
+            <div class="poster-container">
+              <img [src]="serie.poster" [alt]="serie.titulo" class="poster-image">
+            </div>
+            
+            <!-- Información de la serie/película -->
+            <div class="info-container">
+              <h1 class="title">{{serie.title}}</h1>
+              
+              <div class="metadata">
+
+                <span class="year">{{serie.year}}</span>
+                
+              </div>
+              
+              <p class="plot">{{serie.plot}}</p>
+              
+          
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
