@@ -1,112 +1,94 @@
-/* NO LOGED HOME COMPONENT */
+@import '../../variables';
 
-.container{
+.series-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
+}
+
+.container {
   height: fit-content;
 }
 
-.text_container{
+.text_container {
   padding-bottom: 15rem;
 }
 
-.title{
+.title {
   z-index: 100;
-  display: flex;                
+  display: flex;
   align-items: center;
   height: 100%;
   padding-top: 10%;
   font-size: 5rem;
-  color: white;
+  color: $color-font-primary;
 }
 
-.btn-container{
+.btn-container {
   display: flex;
   flex-direction: row;
   gap: 2rem;
 }
 
-.btn{
+.btn {
   padding: 0.5rem 1rem;
-  background-color: rgb(47, 47, 177);
+  background-color: $color-btn-primary;
   border-radius: 20px;
-  color: white;
+  color: $color-font-primary;
   margin-top: 0.5rem;
   transition: 0.2s ease-in-out all;
 }
 
-.btn:hover{
+.btn:hover {
   transition: 0.2s ease-in-out all;
   transform: scale(1.05);
   animation: gradientAnimation 0.5s forwards;
 }
 
-.btn-alt{
-  padding: 1rem 0.6rem;
-  background-color: transparentize($color: rgb(64, 64, 88), $amount: 0.77);
-  border-radius: 0.5rem;
-  color: rgb(214, 214, 214);
-  transition: 0.2s ease-in-out all;
-  border: none;
-
-}
-
-.search{
-  width: 85%;
-  text-align: start;
-}
-
-.search i{
-  padding: 0 1rem;
-}
-
-
 .information {
   display: flex;
   font-family: 'HK grotesk', sans-serif;
   font-weight: 400;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center;    /* Centra verticalmente */
-  color: rgb(255, 255, 255);
+  justify-content: center;
+  align-items: center;
+  color: $color-font-primary;
   width: 40%;
   flex-direction: column;
   align-items: self-start;
 }
 
 img {
-  height: 550px;
+  height: 10rem;
   object-fit: cover;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center;     /* Centra verticalmente */
-  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem;
 }
 
 .poster {
   position: relative;
-  border-right: 1px white solid;
-  object-fit:cover;
-  width: 284px; 
-  height: 660px; 
-  box-shadow: inset 25px 10px 71px -31px rgba(0,0,0,0.5);
-  }
+  border-right: 1px $color-font-primary solid;
+  object-fit: cover;
+  width: 20vw;
+  height: 100vh;
+}
 
 .poster2 {
-    object-fit:cover;
-    border-right: 1px white solid;
-   width: 141.01px; height: 660px;  position: relative;
-  box-shadow: inset 25px 10px 71px -31px rgba(0,0,0,0.5);
+  object-fit: cover;
+  border-right: 1px $color-font-primary solid;
+  width: 10vw;
+  height: 100vh;
+  position: relative;
 }
 
-.poster-cont {  
+.poster-cont {
   z-index: -1;
-  border-top: 10px solid;
-  border-image:   linear-gradient(180deg, #030614 0%, rgba(3, 6, 20, 0) 100%);
-  width:fit-content;
-  height: fit-content; 
+  width: fit-content;
+  height: fit-content;
   position: absolute;
   right: 0;
+  box-shadow: inset $color-font-secondary 0rem 2rem 6rem;
 }
-
-
-
 
 @media (min-width: 1199px) {
   .h-lg-100 {
@@ -119,7 +101,6 @@ img {
     height: 100% !important;
   }
 }
-
 
 /* Keyframes de la animación */
 @-webkit-keyframes scale-up-bl {
@@ -153,58 +134,56 @@ img {
 }
 
 @keyframes gradientAnimation {
-  0% {  
-  background-color: rgb(47, 47, 177);
+  0% {
+    background-color: $color-btn-primary;
   }
   100% {
-    background: rgb(79, 75, 188);
+    background: $color-btn-secondary;
   }
 }
 
 /* Clase de animación */
 .scale-up-bl-t {
-  width: 100%;  
+  width: 100%;
   font-size: 50px;
-  color: rgb(255, 255, 255);
-  -webkit-animation: scale-up-bl 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-  animation: scale-up-bl 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  color: $color-font-primary;
+  -webkit-animation: scale-up-bl 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: scale-up-bl 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .scale-up-bl {
- 
-  color: rgb(255, 255, 255);
-  -webkit-animation: scale-up-bl 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-  animation: scale-up-bl 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  color: $color-font-primary;
+  -webkit-animation: scale-up-bl 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: scale-up-bl 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
-
 .text-focus-in {
-  color: white;
-	-webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-	        animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  color: $color-font-primary;
+  -webkit-animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
 
 @-webkit-keyframes text-focus-in {
   0% {
     -webkit-filter: blur(12px);
-            filter: blur(12px);
+    filter: blur(12px);
     opacity: 0;
   }
   100% {
     -webkit-filter: blur(0px);
-            filter: blur(0px);
+    filter: blur(0px);
     opacity: 1;
   }
 }
 @keyframes text-focus-in {
   0% {
     -webkit-filter: blur(12px);
-            filter: blur(12px);
+    filter: blur(12px);
     opacity: 0;
   }
   100% {
     -webkit-filter: blur(0px);
-            filter: blur(0px);
+    filter: blur(0px);
     opacity: 1;
   }
 }

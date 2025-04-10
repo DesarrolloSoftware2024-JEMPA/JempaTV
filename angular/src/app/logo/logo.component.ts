@@ -16,7 +16,6 @@ import { Observable } from 'rxjs';
   standalone: true,
   template: `
     <a class="navbar-brand" routerLink="/" *ngIf="(currentUser$ | async)?.isAuthenticated">
-      <!-- Change the img src -->
       <img
         src="./assets/images/logo/logo-light.png"
         alt="Jempa TV Logo"

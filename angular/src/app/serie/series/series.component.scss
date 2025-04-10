@@ -1,6 +1,12 @@
+@import "../../../variables";
+
+.home-series{
+  min-height: 80vh;
+}
+
 .title-series{
     padding-bottom: 2rem;
-    color: #FFFFFF;
+    color: $color-font-primary;
 
 }
 
@@ -24,7 +30,7 @@
   
   /* Estilos para la carta de serie */
   .serie-card {
-     border-color:  rgba(9,9,121,1);
+    border-color:  rgba(9,9,121,1);
     position: relative;
     overflow: hidden;
    
@@ -65,48 +71,52 @@
   .serie-title {
     font-size: 1.5em; /* Título más grande */
     margin: 0;
-    color: #FFFFFF;
+    color: $color-font-primary;
     font-weight: bold; /* Texto en negrita */
   }
   
   .serie-year {
-    font-size: 1.2em; /* Año más grande */
-    color: #E5E5E5;
-    margin: 5px 0 0;
+    font-size: 1rem; /* Año más grande */
+    color: $color-font-primary;
+    margin: 0.3rem 0;
   }
 
 .card-btn{
   display: flex;
   padding: 0.7rem 1rem;
   background-color: #256ecd;
-  color: white;
+  color: $color-font-primary;
   border-radius: 0.4rem;
   border: none;
   transition: 0.2s ease-in-out;
+  font-size: small;
+  margin: 0.5rem 0;
 }
 
 .card-btn-block{
   display: flex;
   padding: 0.5rem;
   background-color: transparent;
-  color: white;
+  color: $color-font-primary-light;
   border-radius: 1rem;
   border: none;
   transition: 0.2s ease-in-out;
   cursor:default;
+  margin: 0.5rem 0;
+  font-size: small;
 }
 
 .card-btn:hover{
   transition: 0.2s ease-in-out;
-  background-color: #2660ac;
-  box-shadow: inset 0.1rem 0.2rem 2.5rem black;
+  background-color: #144c95;
+  box-shadow: inset 0.1rem 0.2rem 2.5rem #3587f1;
 }
 
 .btn-alt{
   padding: 1rem 0.6rem;
   background-color: transparentize($color: rgb(64, 64, 88), $amount: 0.77);
   border-radius: 0.5rem;
-  color: rgb(214, 214, 214);
+  color: $color-font-primary-light;
   transition: 0.2s ease-in-out all;
   border: none;
 

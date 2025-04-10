@@ -105,11 +105,14 @@ namespace JempaTV.Notifications
 
             var response = false;
 
-            foreach (var notif in notificationDtoList)
+            if (!notificationDtoList.IsNullOrEmpty())
             {
-                if (notif.Read == false)
+                foreach (var notif in notificationDtoList)
                 {
-                    response = true;
+                    if (notif.Read == false)
+                    {
+                        response = true;
+                    }
                 }
             }
 
@@ -120,7 +123,7 @@ namespace JempaTV.Notifications
         {
             var notification = new NotificationDto()
             {
-                Fecha = DateTime.Now,
+                Fecha = DateTime.UtcNow,
                 Title = "Notificación de prueba",
                 Content = "Si recibiste esta notificacion es porque el sistema funciona correctamente.",
                 Read = false

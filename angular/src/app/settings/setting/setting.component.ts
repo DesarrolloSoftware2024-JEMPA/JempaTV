@@ -39,7 +39,7 @@ export class SettingComponent implements OnInit{
 
     console.log(formData.profilePictureUrl, formData.acceptEmails)
     this.userService.setEmailConfig(formData.acceptEmails)
-    .subscribe(()=>{if (formData.profilePictureUrl!==""){
+    .subscribe(()=>{if (formData.profilePictureUrl!=="" && formData.profilePictureUrl !== null){
       this.userService.setProfilePicture(formData.profilePictureUrl).subscribe()
       }})
   }

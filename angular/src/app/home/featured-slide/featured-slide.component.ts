@@ -19,7 +19,7 @@ SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade]);
 })
 export class FeaturedSlideComponent implements OnInit {
   
-  public imdbIds = ["tt16366836","tt13186482","tt27714946","tt29623480","tt32560777","tt4772188", "tt0096697", "tt4154796", "tt3566834", "tt13622970"];
+  public imdbIds = ["tt4772188","tt13186482","tt27714946","tt3566834", "tt16366836"];
  public series = [] as SerieDto[];
  seriesFromWatchlist = [] as string[];
 

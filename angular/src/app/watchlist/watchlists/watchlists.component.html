@@ -1,7 +1,8 @@
 <div (abpInit)="getUserCalifications()" class="container">
-  <div>
+  <h4  *ngIf="this.watchlist.length===0" class="py-5">Tu watchlist está vacía</h4>
+  <div *ngIf="this.watchlist.length>0">
     <h4>Mi watchlist</h4>
-    <div class="watchlist" *ngIf="this.watchlist.length>0">
+    <div class="watchlist">
       <div *ngFor="let serie of this.watchlist" class="series-container">
         <div class="serie-card">
           <img [src]="serie.poster" [alt]="serie.title" class="img-fluid serie-poster">

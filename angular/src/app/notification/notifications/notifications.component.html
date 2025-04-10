@@ -7,7 +7,7 @@
           <div class="notif-text">
             <div class="notif-title">{{notification.title}}</div>
             <div class="notif-content">{{notification.content}}</div>
-            <div class="notif-date">{{notification.fechaFormateada}}</div>
+            <div class="notif-date">{{notification.fecha | date:'dd/MM/yyyy HH:mm':'America/Argentina/Buenos_Aires'}}</div>
           </div>
           <div class="btns"> 
           <button class="btn" (click)="this.toggleRead(notification)"><i class="fa fa-eye"></i></button>
@@ -15,6 +15,5 @@
         </div>
       </div>
     </div>
-    <h1 class="not-found" *ngIf="this.notifications===null">Mi watchlist está vacía...</h1>
   
 </div>
