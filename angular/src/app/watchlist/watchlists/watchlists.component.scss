@@ -1,16 +1,18 @@
+@import "../../../variables";
+
 .container{
     width:100%;
     height: auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    color: white;
+    color: $color-font-primary;
     min-height: 80vh;
 }
 
 .watchlist{
     width: fit-content;
-    color: white;
+    color: $color-font-primary;
     border-radius: 0.4rem;
     display: flex;
     flex-direction: row;
@@ -34,7 +36,7 @@
 
 .serie-btns button{
     background: none;
-    color: white;
+    color: $color-font-primary;
     border: none;
     padding-right: 0.5rem;
     font-size: 1.1rem;
@@ -57,7 +59,7 @@
   
   /* Estilos para la carta de serie */
   .serie-card {
-    border-color:  rgba(9,9,121,1);
+    border-color:  $color-card-border;
     position: relative;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -67,7 +69,7 @@
   .serie-card:hover {
     transform: scale(1.05); /* Efecto de escala en la carta */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    border-color:  rgba(9,9,121,1);
+    border-color:  $color-card-border;
   }
   
   /* Imagen del póster */
@@ -93,7 +95,7 @@
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)); /* Degradado más opaco */
     padding: 1.5rem; /* Más espacio para el texto */
     border-radius: 0 0 0.8rem 0.8rem;
-    color: white;
+    color: $color-font-primary;
   }
   
   .serie-title {
@@ -111,8 +113,8 @@
 .card-btn{
   display: flex;
   padding: 0.7rem 1rem;
-  background-color: #256ecd;
-  color: white;
+  background-color: $color-btn-third;
+  color: $color-font-primary;
   border-radius: 0.8rem;
   border: none;
   transition: 0.2s ease-in-out;
@@ -122,7 +124,7 @@
   display: flex;
   padding: 0.5rem;
   background-color: transparent;
-  color: white;
+  color: $color-font-primary;
   border-radius: 1rem;
   border: none;
   transition: 0.2s ease-in-out;
@@ -131,7 +133,7 @@
 
 .card-btn:hover{
   transition: 0.2s ease-in-out;
-  background-color: #2660ac;
+  background-color: $color-btn-third;
   box-shadow: inset 0.1rem 0.2rem 2.5rem black;
 }
 

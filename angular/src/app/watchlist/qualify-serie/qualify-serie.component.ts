@@ -22,18 +22,23 @@ export class QualifySerieComponent implements OnInit{
   serie: SerieDto;
   
   formulario = new FormGroup({
-  valor: new FormControl('', [Validators.required, Validators.max(5), Validators.min(1)]),
   comentario: new FormControl('', [Validators.minLength(10)])
   });
+
+  stars = [1, 2, 3, 4, 5];
+
+  hovered = 0;
+
+  rating = 0;
   
   onSubmit() {
     if (this.formulario.valid) {
-      // Crea una instancia de CalificationDto con los valores del formulario
       const calificationData = new CalificationDto
       calificationData.comentario = this.formulario.value.comentario
-      calificationData.valor = Number(this.formulario.value.valor)
+      calificationData.valor = this.rating;
       calificationData.idSerie = Number(this.route.snapshot.paramMap.get('id'));
       
+      console.log(calificationData);
 
       // Envía los datos a la base de datos usando el servicio
       this.serieService.addCalification(calificationData).subscribe({
@@ -64,12 +69,27 @@ export class QualifySerieComponent implements OnInit{
 
   getCalificationFromSerie(idSerie: number){
     this.serieService.getCalificationFromSerie(idSerie).subscribe(x=>
-      this.calification = x
+    {
+      this.calification = x;
+      this.setRating(this.calification.valor);
+    }
     )
   }
 
   getSerie(idSerie: number){
     this.serieService.get(idSerie).subscribe(s => {this.serie = s; console.log(s)})
+  }
+
+  setRating(value: number) {
+    this.rating = value;
+  }
+
+  enter(value: number) {
+    this.hovered = value;
+  }
+
+  leave() {
+    this.hovered = 0;
   }
 
 

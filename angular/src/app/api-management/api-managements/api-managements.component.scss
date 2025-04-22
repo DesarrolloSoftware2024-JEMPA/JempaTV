@@ -1,5 +1,11 @@
+@import "../../../variables";
+
+.container{
+    min-height: 80vh;
+}
+
 .api-management{
-    color: white;
+    color: $color-font-primary;
     display: flex;
     flex-direction: row;
     padding-top: 2rem;
@@ -16,17 +22,17 @@
 }
 
 #myChart{
-    background-color: white;
+    background-color: $color-font-primary;
 }
 
 .estadisticas-api{
-    color: white;
+    color: $color-font-primary;
     width: 50%;
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
     padding: 2rem;
-    background-color: white;
+    background-color: $color-font-primary;
     border-radius: 0.5rem;
 }
 

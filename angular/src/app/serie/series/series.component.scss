@@ -30,7 +30,7 @@
   
   /* Estilos para la carta de serie */
   .serie-card {
-    border-color:  rgba(9,9,121,1);
+    border-color: $color-card-border;
     position: relative;
     overflow: hidden;
    
@@ -41,7 +41,7 @@
   .serie-card:hover {
     transform: scale(1.05); /* Efecto de escala en la carta */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    border-color:  rgba(9,9,121,1);
+    border-color:  $color-card-border;
   }
   
   /* Imagen del póster */
@@ -84,7 +84,7 @@
 .card-btn{
   display: flex;
   padding: 0.7rem 1rem;
-  background-color: #256ecd;
+  background-color: $color-btn-third;
   color: $color-font-primary;
   border-radius: 0.4rem;
   border: none;
@@ -108,7 +108,7 @@
 
 .card-btn:hover{
   transition: 0.2s ease-in-out;
-  background-color: #144c95;
+  background-color: $color-card-btn-hover;
   box-shadow: inset 0.1rem 0.2rem 2.5rem #3587f1;
 }
 
