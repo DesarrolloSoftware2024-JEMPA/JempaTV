@@ -6,7 +6,7 @@
   </div>
   <swiper-container
     loop="false"
-    slides-per-view="3"
+    [attr.slides-per-view]="slidesPerView ?? 'auto'"
     navigation="true"
   >
     <swiper-slide *ngFor="let serie of series">

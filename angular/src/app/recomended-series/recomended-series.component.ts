@@ -18,6 +18,8 @@ export class RecomendedSeriesComponent implements OnInit {
 
   public series = [] as SerieDto[];
 
+  public slidesPerView = 4;
+
   constructor(private serieService: SerieService) {
 
     register();
@@ -26,6 +28,17 @@ export class RecomendedSeriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSeriesList(this.imdbIds)
+    this.onResize()
+  }
+  
+  onResize() {
+    const w = window.innerWidth;
+    if (w>=992){
+      this.slidesPerView = 4
+    } else {
+      this.slidesPerView = null;
+    }
+    
   }
   
   getSerieImdbId(imdbId: string) {

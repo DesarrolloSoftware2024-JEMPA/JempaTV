@@ -21,7 +21,6 @@ swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .serie-card {
@@ -34,6 +33,7 @@ align-items: baseline;
 margin: 0 auto; 
 height: fit-content;
 justify-content: flex-end;
+cursor: pointer;
 }
 
 .serie-card:hover .serie-position {
@@ -42,6 +42,7 @@ justify-content: flex-end;
   color: $color-font-primary;
   z-index: 1;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 

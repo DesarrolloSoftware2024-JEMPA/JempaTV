@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { AuthService } from '@abp/ng.core';
 import { SharedModule } from '../shared/shared.module';
-SharedModule
+
+
 
 @Component({
   selector: 'app-footer',
@@ -11,4 +13,11 @@ SharedModule
 })
 export class FooterComponent {
 
+  constructor(
+    private authService: AuthService,
+  ) {}
+  
+  get hasLoggedIn(): boolean {
+    return this.authService.isAuthenticated;
+  }
 }
