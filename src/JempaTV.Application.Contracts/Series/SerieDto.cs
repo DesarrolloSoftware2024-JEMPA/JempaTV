@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JempaTV.Califications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace JempaTV.Series
     {
         public string ImdbID { get; set; }
         public string Title { get; set; }
+        public CalificationDto? Calification { get; set; }
         public string Year { get; set; }
         public string? Director { get; set; }
         public string? Actors { get; set; }

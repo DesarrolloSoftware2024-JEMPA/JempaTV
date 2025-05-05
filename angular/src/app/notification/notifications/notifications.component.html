@@ -1,0 +1,19 @@
+<div class="container" (abpInit)="getNotificationsFromUser()">
+    <h4 class="title">Mis notificaciones </h4>
+    <div class="notification-container" *ngIf="this.notifications!==null">
+      <div *ngFor="let notification of this.notifications" >
+        <div [ngClass]="{notification: true, read:notification.read}">
+          <img [src]="this.notification.poster" [alt]="notification.title" class="notification_poster">
+          <div class="notif-text">
+            <div class="notif-title">{{notification.title}}</div>
+            <div class="notif-content">{{notification.content}}</div>
+            <div class="notif-date">{{notification.fecha | date:'dd/MM/yyyy HH:mm':'America/Argentina/Buenos_Aires'}}</div>
+          </div>
+          <div class="btns"> 
+          <button class="btn" (click)="this.toggleRead(notification)"><i class="fa fa-eye"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+</div>

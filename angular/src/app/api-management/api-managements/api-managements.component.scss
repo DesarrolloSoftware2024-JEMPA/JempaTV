@@ -1,0 +1,44 @@
+@import "../../../variables";
+
+.container{
+    min-height: 80vh;
+}
+
+.api-management{
+    color: $color-font-primary;
+    display: flex;
+    flex-direction: row;
+    padding-top: 2rem;
+
+}
+
+.api-title{
+    display: flex;
+    flex-direction: row;
+}
+
+.content-header-title{
+    padding-right: 1rem;
+}
+
+#myChart{
+    background-color: $color-font-primary;
+}
+
+.estadisticas-api{
+    color: $color-font-primary;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    padding: 2rem;
+    background-color: $color-font-primary;
+    border-radius: 0.5rem;
+}
+
+.estadisticas-app{
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    gap: 3rem;
+}

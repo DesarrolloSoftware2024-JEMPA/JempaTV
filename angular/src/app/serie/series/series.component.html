@@ -1,0 +1,30 @@
+    <div class="home-series" (abpInit)="getSeriesFromWatchlist()">
+        <form (ngSubmit)="searchSeries()">
+            
+            <div class="input-series">
+            <input class="btn-alt search" type="text" [(ngModel)]="serieTitle" name="title" placeholder="Buscar series, películas y más..." required />
+            <button class="btn-alt submit" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+            
+        </form>
+    
+        <div class="series-container" *ngIf="series.length > 0">
+            <div class="row">
+              <div class="col-md-4 mb-4" *ngFor="let serie of series">
+                <div class="serie-card">
+                  <img [src]="serie.poster" [alt]="serie.title" class="img-fluid serie-poster">
+                  <div class="serie-details">
+                    <h3 class="serie-title">{{ serie.title }}</h3>
+                    <p class="serie-year">{{ serie.year }}</p>
+
+                    <button class="card-btn" (click)="addSerieToWachlist(serie.imdbID, serie.title)" *ngIf="this.existsInWatchlist(serie.imdbID) === false"> Agregar a mi Watchlist</button>
+                    <button class="card-btn-block" *ngIf="this.existsInWatchlist(serie.imdbID) === true">Agregada en mi Watchlist</button>
+          
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        
+    

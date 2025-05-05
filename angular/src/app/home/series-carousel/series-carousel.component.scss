@@ -1,0 +1,89 @@
+@import '../../../variables';
+
+.series-carousel-container {
+  padding: 2rem 0;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $color-font-primary;
+}
+
+swiper-container {
+  max-width: 100%;
+  height: fit-content; 
+  display: flex;
+  justify-content: center;
+}
+
+swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.serie-card {
+background-color:transparent;
+padding: 7%;
+height: auto;
+display: flex;
+flex-direction: row;
+align-items: baseline;
+margin: 0 auto; 
+height: fit-content;
+justify-content: flex-end;
+cursor: pointer;
+}
+
+.serie-card:hover .serie-position {
+  transform: scale(1.2);
+  left: -2%;
+  color: $color-font-primary;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+
+.serie-poster {
+  width: 15rem;
+  height: 20rem;
+  object-fit: fill;
+  box-shadow: $color-font-secondary 0.5rem 0 3rem;
+}
+
+.top10_row{
+display: flex;
+flex-direction: row;
+gap: 1rem;
+align-self: flex-start;
+}
+
+.top10_col{
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  line-height: 0.5rem;
+  padding-top: 10%;
+  letter-spacing: 0.5rem;
+}
+
+.serie-position{
+  font-size: 15rem;
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  font-weight: 900;
+  color: #030129;
+  -webkit-text-stroke: 0.2rem #08086eff;
+  transition: all 0.3s ease-in-out;
+}
+
+.top10{
+  font-size: 5rem;
+  font-family: "Overpass", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bolder;
+  font-style: normal;
+}

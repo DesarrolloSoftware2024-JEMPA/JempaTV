@@ -1,0 +1,41 @@
+@import "../../variables";
+
+.language{
+    color: $color-font-secondary;
+    padding-left: 0.2vw;
+    margin-left: 1vw;
+}
+
+.logged-items{
+    display: flex;
+    flex-direction: row;
+    gap: 0.2rem;
+
+}
+
+.btn-container{
+    display: flex;
+    flex-direction: row;
+}
+
+::ng-deep nav{
+    background: transparent !important;
+}
+
+.btn-alt{
+    padding: 1rem 0.6rem;
+    background-color: transparent;
+    color: $color-font-primary;
+    border: none;
+}
+
+.btn-alt:hover{
+    transform: scale(1.2);
+}
+
+.username{
+    font-size: large;
+    font-weight: bold;
+    padding: 1rem 0 0 1rem;
+    margin: 0 0 1rem 0;
+}

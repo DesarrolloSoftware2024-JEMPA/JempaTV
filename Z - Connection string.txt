@@ -1,1 +1,1 @@
-Server=localhost\SQLEXPRESS;Database=JempaTV;Trusted_Connection=True;
+Server=localhost\SQLEXPRESS;Database=JempaTV;Trusted_Connection=True;Encrypt=false;

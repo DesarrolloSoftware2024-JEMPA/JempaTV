@@ -1,0 +1,28 @@
+@import "../../../variables";
+
+.container{
+    min-height: 80vh;
+}
+
+.form{
+    background-color: $color-font-primary;
+    padding: 1rem;
+    width: 75%;
+    border-radius: 0.5rem;
+}
+
+.form-btns{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.formbtn{
+    opacity: 0.6;
+}
+
+.formbtn:active{
+    opacity: 1;
+}
+

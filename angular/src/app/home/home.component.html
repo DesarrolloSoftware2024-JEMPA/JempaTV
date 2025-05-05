@@ -1,0 +1,48 @@
+<div>
+  @if(!hasLoggedIn){
+
+    <div class="container ">
+      <div class="poster-cont  text-focus-in">
+        <img class="poster" src="../../assets/images/home/3a78a1d88fb77bfae19757ed4abdcb59.png" />
+        <img class="poster2" src="../../assets/images/home/f8849cfe0b2dab0265c1643ed2ea78e7.png" />
+        <img class="poster2" src="../../assets/images/home/eed8b6da07ef5126b4d80a675f38dcd1.png" />
+        <img class="poster2" src="../../assets/images/home/dbfc0cd3e50de0802b0d61632a0680f7.png" />
+        <img class="poster2" src="../../assets/images/home/Picture.png" />
+      </div>
+    
+      <div class="text_container  text-focus-in">
+        
+        <p class="title ">JempaTV</p>
+        
+        <div class="information">
+          <p>La plataforma de streaming que dispone las mejores series y películas.</p>
+        </div>
+
+        <div>
+          <ul class="list">
+            <li><i class="far fa-check-circle"></i>Miles de películas y series</li>
+            <li><i class="far fa-check-circle"></i>Calidad 4K y Ultra HD</li>
+            <li><i class="far fa-check-circle"></i>Disponible en cualquier dispositivo</li>
+          </ul>
+        </div>
+      
+        <div class="btn_section">
+          <p class="information_btn">Inicia sesión para explorar nuestro catálogo!</p>
+          <a (click)="login()" class="btn" role="button">
+            {{ 'AbpAccount::Iniciar sesión' | abpLocalization }}
+            <i class="fa fa-sign-in"></i>
+          </a>
+        </div>
+        
+      </div>
+    </div>
+
+  } @if(hasLoggedIn){
+
+    <section class="series-section">
+      <app-featured-slide></app-featured-slide>
+      <app-series-carousel></app-series-carousel>
+    </section>
+
+  }
+</div>

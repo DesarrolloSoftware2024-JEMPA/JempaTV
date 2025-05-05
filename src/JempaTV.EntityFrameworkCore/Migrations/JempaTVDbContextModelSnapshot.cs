@@ -24,6 +24,28 @@ namespace JempaTV.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("JempaTV.Califications.Calification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comentario")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdSerie")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Valor")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Calification");
+                });
+
             modelBuilder.Entity("JempaTV.Notifications.Notification", b =>
                 {
                     b.Property<int>("Id")
@@ -47,19 +69,23 @@ namespace JempaTV.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OmdbId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Poster")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Read")
                         .HasColumnType("bit");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("User")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("User")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -77,6 +103,9 @@ namespace JempaTV.Migrations
                     b.Property<string>("Actors")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CalificationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .IsRequired()
@@ -84,10 +113,7 @@ namespace JempaTV.Migrations
                         .HasColumnType("nvarchar(40)")
                         .HasColumnName("ConcurrencyStamp");
 
-
-
                     b.Property<string>("Director")
-
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExtraProperties")
@@ -95,20 +121,17 @@ namespace JempaTV.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                  b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("ImdbID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastModified")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Plot")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Poster")
-
                         .HasColumnType("nvarchar(max)");
-
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -119,10 +142,11 @@ namespace JempaTV.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Year")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CalificationId");
 
                     b.HasIndex("WatchListId");
 
@@ -149,8 +173,8 @@ namespace JempaTV.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<int>("User")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("IdUsuario")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -2032,9 +2056,15 @@ namespace JempaTV.Migrations
 
             modelBuilder.Entity("JempaTV.Series.Serie", b =>
                 {
+                    b.HasOne("JempaTV.Califications.Calification", "Calification")
+                        .WithMany()
+                        .HasForeignKey("CalificationId");
+
                     b.HasOne("JempaTV.WatchLists.WatchList", null)
                         .WithMany("Series")
                         .HasForeignKey("WatchListId");
+
+                    b.Navigation("Calification");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>

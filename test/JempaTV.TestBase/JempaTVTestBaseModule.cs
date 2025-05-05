@@ -30,6 +30,8 @@ public class JempaTVTestBaseModule : AbpModule
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
     {
         SeedTestData(context);
+        var dataSeeder = context.ServiceProvider.GetRequiredService<IDataSeeder>(); // Agregado
+        AsyncHelper.RunSync(() => dataSeeder.SeedAsync());                          // para client_id error
     }
 
     private static void SeedTestData(ApplicationInitializationContext context)

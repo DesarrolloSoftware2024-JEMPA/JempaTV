@@ -26,7 +26,7 @@ public class JempaTVDbContextFactory : IDesignTimeDbContextFactory<JempaTVDbCont
     {
         var builder = new ConfigurationBuilder()
             .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../JempaTV.DbMigrator/"))
-            .AddJsonFile("appsettings.json", optional: false);
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
         return builder.Build();
     }

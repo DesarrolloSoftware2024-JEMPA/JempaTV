@@ -16,7 +16,12 @@ using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using JempaTV.Series;
 using JempaTV.WatchLists;
+using JempaTV.Califications;
 using JempaTV.Notifications;
+using JempaTV.Users;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using JempaTV.OpenIddict;
+
 
 namespace JempaTV.EntityFrameworkCore;
 
@@ -35,6 +40,9 @@ public class JempaTVDbContext :
     public DbSet<WatchList> WatchLists { get; set; }
 
     public DbSet<Notification> Notifications {  get; set; }
+
+    private readonly CurrentUserService _currentUserService;
+    private readonly OpenIddictDataSeedContributor _openIddictDataSeedContributor;
 
     #region Entities from the modules
 
@@ -68,8 +76,12 @@ public class JempaTVDbContext :
     public JempaTVDbContext(DbContextOptions<JempaTVDbContext> options)
         : base(options)
     {
+        //_currentUserService = this.GetService<CurrentUserService>();
+        //_openIddictDataSeedContributor = this.GetService<OpenIddictDataSeedContributor>();
 
     }
+
+    
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -89,12 +101,19 @@ public class JempaTVDbContext :
 
         /* Configure your own tables/entities inside here */
 
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(JempaTVConsts.DbTablePrefix + "YourEntities", JempaTVConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
+        /*builder.Entity<YourEntity>(b =>
+        {
+            b.ToTable(JempaTVConsts.DbTablePrefix + "YourEntities", JempaTVConsts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+            ...
+        });*/
+
+        /*builder.Entity<User>(b =>
+        {
+            b.ToTable(JempaTVConsts.DbTablePrefix + "Users", JempaTVConsts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+            
+        });*/
 
         builder.Entity<Serie>(b =>
         {

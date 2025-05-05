@@ -10,14 +10,12 @@ namespace JempaTV.Notifications
     public class Notification : AggregateRoot<int>
     {
 
-        public string Title { get; set; }
-
-        public string User {  get; set; }
-        
+        public string? Title { get; set; }
+        public Guid? User {  get; set; }
         public string? Content { get; set; }
-
-        public string? Type { get; set; }
-
         public bool Read { get; set; }
+        public DateTime Fecha {  get; set; }
+        public string? OmdbId {  get; set; }
+        public string? Poster {  get; set; }
     }
 }
