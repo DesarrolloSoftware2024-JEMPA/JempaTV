@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Modularity;
 using Xunit;
 
@@ -14,25 +15,25 @@ namespace JempaTV.Series
     public abstract class SerieAppServiceTests<TStartupModule> : JempaTVApplicationTestBase<TStartupModule>
     where TStartupModule : IAbpModule
     {
-        private readonly SerieAppService _serieAppService;
+
+        private readonly ISerieAppService _serieAppService;
+        private readonly IRepository<Serie, int> _serieRepository;
 
         public SerieAppServiceTests()
         {
-            _serieAppService = GetRequiredService<SerieAppService>();
+            _serieAppService = GetRequiredService<ISerieAppService>();
+            _serieRepository = GetRequiredService<IRepository<Serie, int>>();
         }
 
         [Fact]
-        public async Task Should_Get_List_Of_Califications()
+        public async Task FindSerieImdbId_Should_Find_Serie()
         {
-            //Arrange
-            Guid Usuario = Guid.Parse("8802F6C4-043C-8EC2-6B82-3A15AE64EEF4");
+            var imdbId = "#0001";
 
-            //Act
-            
-            var result = await _serieAppService.GetCalificationsAsync();
+            var result = await _serieAppService.FindSerieImdbId(imdbId);
 
-            //Assert
             result.ShouldNotBeNull();
+            result.Title.ShouldBe("Serie de prueba");
         }
     }
 }
