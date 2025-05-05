@@ -26,7 +26,9 @@ namespace JempaTV.Series
                 using HttpClient client = new();
 
                 //Formamos la url con los datos
+
                 string url = $"{omdbUrl}?s={title}&apikey={apiKey}&type=series&page=1";
+
 
                 //Obtenemos la respuesta de forma asincrona
                 var response = await client.GetAsync(url);
@@ -46,6 +48,7 @@ namespace JempaTV.Series
                 }
 
                 //Finalmente obtenemos la lista de series similares
+
                 var omdbSeriesList = searchResponse?.List ?? new List<OmdbSerie>();
 
 
@@ -65,6 +68,7 @@ namespace JempaTV.Series
                         Plot = serie.Plot,
                         Poster = serie.Poster
                     });
+
                 }
                 }
                 return matchedSeries;
