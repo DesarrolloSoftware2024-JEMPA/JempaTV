@@ -17,7 +17,7 @@
           <button routerLink="/watchlist" class="btn-alt watchlist"><i class="fa fa-list light"></i></button>
         </div>
       </div>
-      <div class="btn-alt" >
+      <button class="btn-alt my-notifications" >
         <i
           *ngIf="!this.unreadNotifications"
           class="fa fa-bell"
@@ -32,7 +32,7 @@
           style="color: #0e66e9; cursor: pointer;"
           routerLink="/my-notifications"
         ></i>
-      </div>
+      </button>
     </div>
     
     <div
