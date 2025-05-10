@@ -15,13 +15,15 @@ import { Observable } from 'rxjs';
   imports:[SharedModule],
   standalone: true,
   template: `
-    <a class="navbar-brand" routerLink="/" *ngIf="(currentUser$ | async)?.isAuthenticated">
+    <a class="navbar-brand" routerLink="/" *ngIf="(currentUser$ | async)?.isAuthenticated" style="display: flex; flex-direction: row-reverse; gap: 0.5rem; margin: 1rem;">
       <img
-        src="./assets/images/logo/logo-light.png"
+        src="./assets/images/logo/jempatv_icon.svg"
         alt="Jempa TV Logo"
-        width="150"
+        width="30"
         height="auto"
+        style="padding-bottom: 0.8rem;"
       />
+      <h4>JempaTV</h4>
     </a>
   `,
 })

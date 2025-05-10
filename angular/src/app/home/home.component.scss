@@ -62,8 +62,8 @@
 }
 
 .btn:hover {
-  transition: 0.4s ease-in-out all;
-  transform: scale(1.1);
+  transition: 0.2s ease-in-out all;
+  transform: scale(1.05);
   background-repeat: no-repeat;
   background-color: transparent;
 }
@@ -129,10 +129,11 @@ img {
 }
 
 .poster-cont {
-  z-index: -1;
+  z-index: 1;
   width: fit-content;
   height: fit-content;
   position: absolute;
+  top: 0;
   right: 0;
   box-shadow: inset $color-font-secondary 0rem 2rem 6rem;
 }
@@ -144,7 +145,7 @@ img {
 @media (max-width: 768px) {
 
   .text_container{
-    padding-top: 8rem;
+    padding-top: 6rem;
     width: 100%;
   }
 

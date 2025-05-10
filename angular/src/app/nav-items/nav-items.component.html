@@ -1,4 +1,4 @@
-<ul (abpInit)="Init()" class="navbar-nav">
+<ul (abpInit)="Init()" class="navbar-nav" *ngIf="(currentUser$ | async)?.isAuthenticated">
   <!-- BUSQUEDA -->
 
   <!-- PERFIL -->

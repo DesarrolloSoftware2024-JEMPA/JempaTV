@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400">
+  <!-- TV Body -->
+  <rect x="100" y="80" width="300" height="200" rx="15" ry="15" fill="#007aff" stroke="white" stroke-width="5"/>
+  
+  <!-- TV Screen -->
+  <rect x="120" y="100" width="260" height="160" rx="10" ry="10" fill="#005bb8" stroke="white" stroke-width="2"/>
+  
+  <!-- JEMPA Text -->
+  <text x="250" y="190" font-family="Verdana, sans-serif" font-size="42" font-weight="normal" fill="white" text-anchor="middle" dominant-baseline="middle">JempaTV</text>
+  
+  <!-- TV Stand -->
+  <path d="M200,280 L300,280 L320,320 L180,320 Z" fill="#007aff" stroke="white" stroke-width="3"/>
+  
+  <!-- TV Buttons -->
+  <circle cx="380" cy="110" r="5" fill="white"/>
+  <circle cx="380" cy="130" r="5" fill="white"/>
+  <circle cx="380" cy="150" r="5" fill="white"/>
+  
+  <!-- TV Antenna -->
+  <line x1="150" y1="80" x2="130" y2="30" stroke="white" stroke-width="4"/>
+  <line x1="350" y1="80" x2="370" y2="30" stroke="white" stroke-width="4"/>
+</svg>

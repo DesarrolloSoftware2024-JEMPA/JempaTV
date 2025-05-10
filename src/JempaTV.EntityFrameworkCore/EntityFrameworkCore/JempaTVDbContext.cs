@@ -76,8 +76,8 @@ public class JempaTVDbContext :
     public JempaTVDbContext(DbContextOptions<JempaTVDbContext> options)
         : base(options)
     {
-        //_currentUserService = this.GetService<CurrentUserService>();
-        //_openIddictDataSeedContributor = this.GetService<OpenIddictDataSeedContributor>();
+        _currentUserService = this.GetService<CurrentUserService>();
+        _openIddictDataSeedContributor = this.GetService<OpenIddictDataSeedContributor>();
 
     }
 

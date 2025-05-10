@@ -18,6 +18,21 @@
     justify-content: space-between;
 }
 
+.checkbox{
+    width: 1.5rem;
+    height: 2rem;
+    vertical-align: middle;
+    border-radius: 30%;
+}
+
+.form-label{
+    padding: 1rem 0;
+}
+
+.nav-item{
+    padding: 1rem 0;
+}
+
 .formbtn{
     opacity: 0.6;
 }
@@ -26,3 +41,7 @@
     opacity: 1;
 }
 
+button{
+    width: fit-content;
+    padding: 0;
+}
