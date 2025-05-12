@@ -26,6 +26,7 @@
                 <div class="mb-3 form-group">
                   <label class="form-label">{{ 'AbpUi::ProfilePicture' | abpLocalization }}</label
                   ><input
+                  placeholder="Ingrese su URL: http://..."
                     class="form-control ng-untouched ng-pristine ng-invalid"
                     formControlName="profilePictureUrl"
                   />
@@ -47,19 +48,13 @@
                     <i class="me-1 fa fa-send" ng-reflect-ng-class="fa fa-send"></i>{{'AbpSettingManagement::SendTestEmail' | abpLocalization}}
                   </button></abp-button
                 >
-                <abp-button
-                  iconclass="fa fa-check"
-                  buttonclass="btn btn-primary color-white"
-                  class="formbtn"
-                  type="submit"
-                  ><button
+                <button
                     ng-reflect-ng-class="btn btn-primary color-white"
                     type="submit"
                     class="btn btn-primary color-white"
                   >
                     <i class="me-1 fa fa-check" ></i>Guardar
-                  </button></abp-button
-                >
+                  </button>
                 </div>
               </form>
             </div>

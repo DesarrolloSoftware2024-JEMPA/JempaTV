@@ -87,3 +87,18 @@ align-self: flex-start;
   font-weight: bolder;
   font-style: normal;
 }
+
+@media screen and (max-width:768px) {
+  
+  .top10_row{
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .top10_col{
+    display: none;
+  }
+  
+}

@@ -3,12 +3,13 @@ import { PagedResultDto } from '@abp/ng.core';
 import { NotificationService, NotificationDto } from '@proxy/notifications';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CommonModule } from '@angular/common';
+import { AdjustTimePipe } from 'src/app/shared/pipes/adjust-time.pipe';
 
 
 @Component({
   selector: 'app-notifications',
   standalone: true,
-  imports: [SharedModule, CommonModule],
+  imports: [SharedModule, CommonModule, AdjustTimePipe],
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.scss',
 })
@@ -20,14 +21,11 @@ export class NotificationsComponent {
 
   }
 
-  getNotificationsFromUser() {
-    this.notificationService
-      .getNotifications()
-      .subscribe(notifications => {
-        this.notifications=notifications;
-      }
-      )
-  }
+getNotificationsFromUser() {
+  this.notificationService.getNotifications().subscribe( (notifications) => {
+    this.notifications = notifications;
+  });
+}
 
   getClass = (row) => {
     return {
