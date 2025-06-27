@@ -31,5 +31,12 @@ export const environment = {
   remoteEnv: {
     url: '/getEnvConfig',
     mergeStrategy: 'deepmerge'
+  }, 
+  localization: {
+    defaultResourceName: 'JempaTV', // Nombre de tu recurso
+    languages: [
+      { name: 'Español', cultureName: 'es' },
+      { name: 'English', cultureName: 'en' }
+    ]
   }
 } as Environment;

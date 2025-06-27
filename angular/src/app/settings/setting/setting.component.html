@@ -33,27 +33,23 @@
                 </div>
                 <div class="mb-3 form-group">
                   <label for="confirm-new-password" class="form-label"
-                    >Recibir notificaciones por email</label
+                    >{{this.receiveEmails}}</label
                   ><input type="checkbox" class="px-2 mx-3 checkbox" formControlName="acceptEmails" />
                 </div>
                 <div class="form-btns">
-                  <abp-button
-                  iconclass="fa fa-check"
-                  buttonclass="btn btn-primary color-white"
-                  ><button
-                    ng-reflect-ng-class="btn btn-primary color-white"
-                    class="btn btn-primary color-white"
+                  <button
+                    ng-reflect-ng-class="btn btn-primary color-white "
+                    class="btn btn-primary color-white p-2"
                     (click)="this.sendTestEmail()"
                   >
-                    <i class="me-1 fa fa-send" ng-reflect-ng-class="fa fa-send"></i>{{'AbpSettingManagement::SendTestEmail' | abpLocalization}}
-                  </button></abp-button
-                >
+                    <i class="fa fa-send m-1" ></i>{{this.sendTestNotification}}
+                  </button>
                 <button
                     ng-reflect-ng-class="btn btn-primary color-white"
                     type="submit"
-                    class="btn btn-primary color-white"
+                    class="btn btn-primary color-white p-2 gap-1"
                   >
-                    <i class="me-1 fa fa-check" ></i>Guardar
+                    <i class="m-1 fa fa-check" ></i>{{'AbpUi::Save' | abpLocalization}}
                   </button>
                 </div>
               </form>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PagedResultDto } from '@abp/ng.core';
+import { LocalizationService, PagedResultDto } from '@abp/ng.core';
 import { NotificationService, NotificationDto } from '@proxy/notifications';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CommonModule } from '@angular/common';
@@ -17,8 +17,15 @@ export class NotificationsComponent {
 
   public notifications: PagedResultDto<NotificationDto>;
 
-  constructor(private notificationService: NotificationService) {
+  myNotifications: string;
+  TestNotificationTitle: string;
+  TestNotificationComment: string;
 
+
+  constructor(private notificationService: NotificationService, private localizationService: LocalizationService) {
+    this.myNotifications = localizationService.instant('JempaTV::MyNotifications')
+    this.TestNotificationComment = localizationService.instant('JempaTV::TestNotificationComment')
+    this.TestNotificationTitle = localizationService.instant('JempaTV::TestNotificationTitle')
   }
 
 getNotificationsFromUser() {

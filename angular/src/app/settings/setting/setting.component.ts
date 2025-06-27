@@ -1,7 +1,7 @@
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { Component } from '@angular/core';
 import { AccountModule } from '@abp/ng.account';
-import { LocalizationModule } from '@abp/ng.core';
+import { LocalizationModule, LocalizationService } from '@abp/ng.core';
 import { UserService } from '@proxy/users';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -25,8 +25,13 @@ export class SettingComponent implements OnInit{
     acceptEmails: new FormControl(false), // Nuevo atributo de usuario.
   });
 
-  constructor(private userService: UserService, private notificationService: NotificationService){
+  sendTestNotification: string;
+  receiveEmails: string;
 
+
+  constructor(private userService: UserService, private notificationService: NotificationService, private localizationService: LocalizationService){
+    this.sendTestNotification = localizationService.instant('JempaTV::SendTestNotification')
+    this.receiveEmails = localizationService.instant('JempaTV::ReceiveEmails')
   }
 
   ngOnInit(): void {

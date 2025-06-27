@@ -16,6 +16,13 @@ export const environment = {
   application: {
     baseUrl,
     name: 'JempaTV',
+  }, 
+  localization: {
+    defaultResourceName: 'JempaTV', // Nombre de tu recurso
+    languages: [
+      { name: 'Español', cultureName: 'es' },
+      { name: 'English', cultureName: 'en' }
+    ]
   },
   oAuthConfig,
   apis: {
@@ -28,4 +35,5 @@ export const environment = {
       rootNamespace: 'AbpAccountPublic',
     },
   },
+
 } as Environment;

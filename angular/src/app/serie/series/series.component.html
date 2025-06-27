@@ -2,7 +2,7 @@
         <form (ngSubmit)="searchSeries()">
             
             <div class="input-series">
-            <input class="btn-alt search" type="text" [(ngModel)]="serieTitle" name="title" placeholder="Buscar series, películas y más..." required />
+            <input class="btn-alt search" type="text" [(ngModel)]="serieTitle" name="title" [placeholder]="this.placeholder" required />
             <button class="btn-alt submit" type="submit"><i class="fa fa-search"></i></button>
             </div>
             
@@ -17,8 +17,8 @@
                     <h3 class="serie-title">{{ serie.title }}</h3>
                     <p class="serie-year">{{ serie.year }}</p>
 
-                    <button class="card-btn" (click)="addSerieToWachlist(serie.imdbID, serie.title)" *ngIf="this.existsInWatchlist(serie.imdbID) === false"> Agregar a mi Watchlist</button>
-                    <button class="card-btn-block" *ngIf="this.existsInWatchlist(serie.imdbID) === true">Agregada en mi Watchlist</button>
+                    <button class="card-btn" (click)="addSerieToWachlist(serie.imdbID, serie.title)" *ngIf="this.existsInWatchlist(serie.imdbID) === false">{{this.addToWatchlist}}</button>
+                    <button class="card-btn-block" *ngIf="this.existsInWatchlist(serie.imdbID) === true">{{this.addedToWatchlist}}</button>
           
                   </div>
                   

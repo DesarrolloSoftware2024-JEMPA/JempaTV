@@ -3,6 +3,7 @@ import { CalificationDto, SerieDto, SerieService } from '@proxy/series';
 import { WatchlistService } from '@proxy/watchlists';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RecomendedSeriesModule } from "../../recomended-series/recomended-series.module";
+import { LocalizationService } from '@abp/ng.core';
 
 @Component({
   selector: 'app-watchlists',
@@ -17,8 +18,12 @@ export class WatchlistsComponent implements OnInit {
 
   public califications = [] as CalificationDto[];
 
-  constructor (private watchlistService: WatchlistService, private serieService: SerieService){
+  myWatchlist: string;
+  watchlistIsEmpty: string;
 
+  constructor (private watchlistService: WatchlistService, private serieService: SerieService, private localizationService: LocalizationService){
+    this.myWatchlist = localizationService.instant('JempaTV::MyWatchlist')
+    this.watchlistIsEmpty = localizationService.instant('JempaTV::WatchlistIsEmpty')
   }
 
   ngOnInit(){

@@ -17,6 +17,7 @@ using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Users;
 using Volo.Abp;
+using Microsoft.Extensions.Logging;
 
 namespace JempaTV.Series
 {
@@ -27,13 +28,15 @@ namespace JempaTV.Series
         private readonly IRepository<Serie, int> _serieRepository;
         private readonly ICurrentUser _currentUser;
         private readonly IMapper _mapper;
-        public SerieAppService(IRepository<Serie, int> repository, ISerieApiService seriesapiService, IRepository<WatchList, int> watchlistRepository, IRepository<Serie, int> serieRepository, IMapper mapper, ICurrentUser currentUser) : base(repository)
+        private readonly ILogger<SerieAppService> _logger;
+        public SerieAppService(ILogger<SerieAppService> logger, IRepository<Serie, int> repository, ISerieApiService seriesapiService, IRepository<WatchList, int> watchlistRepository, IRepository<Serie, int> serieRepository, IMapper mapper, ICurrentUser currentUser) : base(repository)
         {
             _seriesApiService = seriesapiService;
             _watchlistRepository = watchlistRepository;
             _serieRepository = serieRepository;
             _currentUser = currentUser;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<ICollection<SerieDto>> SearchAsync(string title)
@@ -56,22 +59,7 @@ namespace JempaTV.Series
         {
             var matchedSeries = await _seriesApiService.GetDetailedSerieAsync(title);
 
-            var listSeries = new List<Serie>();
-
-            foreach (var serie in matchedSeries) {
-                listSeries.Add(new Serie()
-                {
-                    Title = serie.Title,
-                    ImdbID = serie.ImdbID,
-                    Actors = serie.Actors,
-                    Director = serie.Director,
-                    LastModified = DateTime.Now,
-                    Year = serie.Year,
-                    Plot = serie.Plot,
-                    Poster = serie.Poster,
-                    Calification = null,
-                });
-            }
+            var listSeries = _mapper.Map<List<Serie>>(matchedSeries);
 
             await _serieRepository.InsertManyAsync(listSeries);
         }
@@ -80,22 +68,7 @@ namespace JempaTV.Series
         {
             var series = await _serieRepository.ToListAsync();
 
-            var seriesDto = new List<SerieDto>();
-
-            foreach (var serie in series)
-            {
-                seriesDto.Add(new SerieDto()
-                {
-                     Title = serie.Title,
-                    ImdbID = serie.ImdbID,
-                    Actors = serie.Actors,
-                    Director = serie.Director,
-                    Year = serie.Year,
-                    Plot = serie.Plot,
-                    Poster = serie.Poster
-                }
-                );
-            }
+            var seriesDto = _mapper.Map<Collection<SerieDto>>(series);
 
             return new Collection<SerieDto>(seriesDto);
         }
@@ -135,9 +108,9 @@ namespace JempaTV.Series
 
             } catch (Exception ex)
             {
-                var calificationList = new List<CalificationDto>();
-                Console.WriteLine(ex.ToString());
-                return calificationList;
+                _logger.LogError(ex, "Ocurrió un error al obtener las calificaciones del usuario actual.");
+
+                return new List<CalificationDto>();
             }
 
             
@@ -157,7 +130,9 @@ namespace JempaTV.Series
             catch (Exception ex)
             {
 
-                throw new UserFriendlyException(ex.Message);
+                _logger.LogError(ex, "Ocurrió un error al obtener la calificacion de dicha serie.");
+
+                return null;
             }
         }
 
@@ -216,7 +191,7 @@ namespace JempaTV.Series
             } 
             else
             {
-                Console.WriteLine("La serie no pertenece a la watchlist de este usuario");
+                _logger.LogInformation("La serie no pertenece a la watchlist de este usuario");
             }
         }
 

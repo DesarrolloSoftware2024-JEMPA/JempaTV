@@ -12,24 +12,16 @@
     
       <div class="text_container  text-focus-in">
         
-        <p class="title ">JempaTV</p>
+        <p class="title ">{{this.appName}}</p>
         
         <div class="information">
-          <p>La plataforma de streaming que dispone las mejores series y películas.</p>
-        </div>
-
-        <div>
-          <ul class="list">
-            <li><i class="far fa-check-circle"></i>Miles de series populares</li>
-            <li><i class="far fa-check-circle"></i>Calidad 4K y Ultra HD</li>
-            <li><i class="far fa-check-circle"></i>Disponible en cualquier dispositivo</li>
-          </ul>
+          <p>{{this.appDescription}}</p>
         </div>
       
         <div class="btn_section">
-          <p class="information_btn">Inicia sesión para explorar nuestro catálogo!</p>
+          <p class="information_btn">{{this.appLogin}}</p>
           <a (click)="login()" class="btn" role="button">
-            {{ 'AbpAccount::Iniciar sesión' | abpLocalization }}
+            {{ 'AbpAccount::Login' | abpLocalization }}
             <i class="fa fa-sign-in"></i>
           </a>
         </div>

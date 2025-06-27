@@ -3,7 +3,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { LogDto } from '@proxy/logs';
 import { Chart, registerables } from 'chart.js';
 import { LogService } from '@proxy/logs';
-
+import { LocalizationService } from '@abp/ng.core'; // <-- Importa LocalizationService
 
 @Component({
   selector: 'app-api-managements',
@@ -13,16 +13,26 @@ import { LogService } from '@proxy/logs';
   imports: [SharedModule]
 })
 export class ApiManagementsComponent implements OnInit {
-  
-public error:number;
-public executionDuration:number;
-public totalUsers:number;
-public apiStats = [] as LogDto[];
-public chart: any;
 
+  public error: number;
+  public executionDuration: number;
+  public totalUsers: number;
+  public apiStats = [] as LogDto[];
+  public chart: any;
 
-public labels: string[] = [];
+  public load = false;
+
+  public labels: string[] = [];
   public data: number[] = [];
+
+  // Variables de localización
+  statsLabel: string;
+  apiActivityLabel: string;
+  byMonthLabel: string;
+  totalErrorsLabel: string;
+  totalUsersLabel: string;
+  responseTimeLabel: string;
+  apiStatistics: string;
 
   public lineChartOptions = {
     responsive: true,
@@ -34,7 +44,7 @@ public labels: string[] = [];
     plugins: {
       title: {
         display: true,
-        text: 'Actividad de la API por Mes',
+        text: '', // Se setea dinámicamente en crearGrafico
       },
     },
   };
@@ -49,107 +59,113 @@ public labels: string[] = [];
   public lineChartLegend = true;
   public lineChartType = 'line';
 
-
-  constructor(private logService: LogService,) {
+  constructor(
+    private logService: LogService,
+    private localizationService: LocalizationService // <-- Inyecta LocalizationService
+  ) {
     Chart.register(...registerables);
-    
+
+    // Inicializa las variables de localización
+    this.statsLabel = this.localizationService.instant('JempaTV::Stats');
+    this.apiActivityLabel = this.localizationService.instant('JempaTV::ApiActivity');
+    this.byMonthLabel = this.localizationService.instant('JempaTV::byMonth');
+    this.totalErrorsLabel = this.localizationService.instant('JempaTV::totalErrors');
+    this.totalUsersLabel = this.localizationService.instant('JempaTV::totalUsers');
+    this.responseTimeLabel = this.localizationService.instant('JempaTV::responseTime');
+    this.apiStatistics = this.localizationService.instant('JempaTV::ApiStats')
   }
 
   ngOnInit(): void {
     this.getUserError();
     this.getAverageExecutionDuration();
     this.getTotalUsers();
-    this.getApiStats();   
-  
+    this.getApiStats();
   }
 
-  getApiStats() { 
+  getApiStats() {
     this.logService.getApiStats().subscribe((res) => {
-    this.apiStats=res;
-    const actividadPorMes = this.contarActividadPorMes(res);
-    this.crearGrafico(actividadPorMes);
-  },
-    (error) => {
-      
-      console.error('Error al obtener estadísticas de la API', error);
-    }
-  
-  );
-}
-
-contarActividadPorMes(logs: LogDto[]): { [mes: string]: number } { //El metodo devuelve un array donde cada elemento mes tiene un valor asignado q corresponde a las llamadas a la api 
-  const actividadPorMes: { [mes: string]: number } = {};
-
-  logs.forEach(log => {
-      const fecha = new Date(log.executionTime); // Asegúrate de que 'executionTime' sea el campo correcto
-      const mes = `${fecha.getFullYear()}-${fecha.getMonth() + 1}`; // Formato "YYYY-MM"
-
-      if (!actividadPorMes[mes]) {
-          actividadPorMes[mes] = 0;
+      this.apiStats = res;
+      const actividadPorMes = this.contarActividadPorMes(res);
+      this.crearGrafico(actividadPorMes);
+      this.load = true;
+    },
+      (error) => {
+        console.error('Error al obtener estadísticas de la API', error);
       }
+    );
+  }
 
-      actividadPorMes[mes] += 1; // 
-  });
+  contarActividadPorMes(logs: LogDto[]): { [mes: string]: number } {
+    const actividadPorMes: { [mes: string]: number } = {};
 
-  return actividadPorMes; // Devolver el objeto con la actividad por mes
-}
+    logs.forEach(log => {
+      const fecha = new Date(log.executionTime);
+      const mes = `${fecha.getFullYear()}-${fecha.getMonth() + 1}`;
+      if (!actividadPorMes[mes]) {
+        actividadPorMes[mes] = 0;
+      }
+      actividadPorMes[mes] += 1;
+    });
 
-crearGrafico(actividadPorMes: { [mes: string]: number }) {
-  const meses = Object.keys(actividadPorMes);
-  const actividad = Object.values(actividadPorMes);
+    return actividadPorMes;
+  }
 
-  this.chart = new Chart('myChart', {
-    type: 'line', // Tipo de gráfico (línea)
-    data: {
-      labels: meses, // Etiquetas del eje X (meses)
-      datasets: [
-        {
-          label: 'Actividad de la API', // Leyenda del gráfico
-          data: actividad, // Datos de actividad por mes
-          borderColor: 'rgba(75, 192, 192, 1)', // Color de la línea
-          backgroundColor: 'rgba(202, 202, 202, 0.2)', // Color de fondo
-          borderWidth: 2, // Ancho de la línea
-          fill: true, // Rellenar el área bajo la línea
+  crearGrafico(actividadPorMes: { [mes: string]: number }) {
+    const meses = Object.keys(actividadPorMes);
+    const actividad = Object.values(actividadPorMes);
+    this.chart = new Chart('myChart', {
+      type: 'line',
+      data: {
+        labels: meses,
+        datasets: [
+          {
+            label: this.apiActivityLabel, // Usa la variable de localización
+            data: actividad,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(202, 202, 202, 0.2)',
+            borderWidth: 2,
+            fill: true,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: `${this.apiActivityLabel} ${this.byMonthLabel}`, // Usa las variables de localización
+          },
         },
-      ],
-    },
-    options: {
-      responsive: true, // Gráfico responsivo
-      plugins: {
-        title: {
-          display: true,
-          text: 'Actividad de la API por Mes', // Título del gráfico
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
         },
       },
-      scales: {
-        
-        y: {
-          beginAtZero: true, // Eje Y comienza en 0
+    });
+  }
 
-        },
-      },
-    },
-  });
-}
-
-  getUserError() { 
+  getUserError() {
     this.logService.getErrorQuantity().subscribe(res => {
-    if (typeof res === 'number') {
-      this.error = res;}
+      if (typeof res === 'number') {
+        this.error = res;
+      }
     });
   }
 
-  getTotalUsers() { 
+  getTotalUsers() {
     this.logService.getTotalUsers().subscribe(res => {
-    if (typeof res === 'number') {
-      this.totalUsers= res;}
+      if (typeof res === 'number') {
+        this.totalUsers = res;
+      }
     });
   }
 
-  getAverageExecutionDuration() { 
+  getAverageExecutionDuration() {
     this.logService.getAverageExecutionDuration().subscribe(res => {
-    if (typeof res === 'number') {
-      this.executionDuration = res;}
+      if (typeof res === 'number') {
+        this.executionDuration = res;
+      }
     });
   }
 

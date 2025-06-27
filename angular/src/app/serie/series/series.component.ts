@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SerieDto, SerieService } from '@proxy/series';
 import { WatchlistService } from '@proxy/watchlists';
-import { delay } from 'rxjs';
+import { LocalizationService } from '@abp/ng.core';
 
 @Component({
   selector: 'app-series',
@@ -12,12 +12,17 @@ export class SeriesComponent {
 
   series = [] as SerieDto[];
   seriesFromWatchlist = [] as string[];
-
   serieTitle: string = "";
+  placeholder: string = "";
+  addToWatchlist: string = "";
+  addedToWatchlist:string = "";
 
-  constructor(private serieService: SerieService, private watchlistService: WatchlistService) {
-
+  constructor(private serieService: SerieService, private watchlistService: WatchlistService, private localizationService: LocalizationService) {
+    this.placeholder = this.localizationService.instant('JempaTV::SearchSerie')
+    this.addToWatchlist = this.localizationService.instant('JempaTV::AddToWatchlist')
+    this.addedToWatchlist = this.localizationService.instant('JempaTV::AddedToWatchlist')
   }
+
 
   public searchSeries() {
     if(this.serieTitle.trim()) {

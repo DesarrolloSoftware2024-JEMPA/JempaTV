@@ -20,8 +20,9 @@ namespace JempaTV.BackgroundWorker
 
         private readonly IWatchListAppService? _watchListAppService; // Es nullable 
         private readonly INotificationAppService? _notificationAppService; // Es nullable 
+        private readonly ILogger<WatchListChangeWorker> _logger;
 
-        public WatchListChangeWorker(
+        public WatchListChangeWorker(ILogger<WatchListChangeWorker> logger,
                 AbpAsyncTimer timer,
                 IWatchListAppService watchListAppService,
                 INotificationAppService notificationAppService,
@@ -33,6 +34,7 @@ namespace JempaTV.BackgroundWorker
             Timer.Period = 86400000; // 1 day
             _watchListAppService = watchListAppService;
             _notificationAppService = notificationAppService;
+            _logger = logger;
 
         }
 
@@ -49,12 +51,12 @@ namespace JempaTV.BackgroundWorker
 
             if (_watchListAppService == null)
             {
-                Console.WriteLine("WatchListAppService no está inicializado.");
+                _logger.LogInformation("WatchListAppService no está inicializado.");
                 return;
             }
             if (_notificationAppService == null)
             {
-                Console.WriteLine("NotificationAppService no está inicializado.");
+                _logger.LogInformation("NotificationAppService no está inicializado.");
                 return;
             }
 

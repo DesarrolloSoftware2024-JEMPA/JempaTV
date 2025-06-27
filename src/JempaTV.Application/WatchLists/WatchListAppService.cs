@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using JempaTV.Series;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,17 +17,19 @@ namespace JempaTV.WatchLists
 
     {
 
-        private readonly IRepository<WatchList, int> _watchListRepository;
+        private readonly IWatchlistRepository _watchListRepository;
         private readonly IRepository<Serie, int> _serieRepository;
         private readonly ICurrentUser _currentUser;
         private readonly IMapper _mapper;
+        private readonly ILogger<WatchListAppService> _logger;
 
-        public WatchListAppService(IRepository<WatchList, int> watchListRepository, IRepository<Serie, int> serieRepository, IMapper mapper, ICurrentUser currentUser)
+        public WatchListAppService(ILogger<WatchListAppService> logger , IWatchlistRepository watchListRepository, IRepository<Serie, int> serieRepository, IMapper mapper, ICurrentUser currentUser)
         {
             this._watchListRepository = watchListRepository;
             this._serieRepository = serieRepository;
             this._currentUser = currentUser;
             this._mapper = mapper;
+            this._logger = logger;
         }
 
         public async Task AddSerieAsync(int serieId)
@@ -52,7 +55,7 @@ namespace JempaTV.WatchLists
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                _logger.LogError(ex, "Ocurrió un error al agregar la serie a la Watchlist.");
                 throw;
             }
             
@@ -75,7 +78,7 @@ namespace JempaTV.WatchLists
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                _logger.LogError(ex, "Ocurrió un error al agregar la Watchlist.");
                 throw;
             }
         }
@@ -91,43 +94,24 @@ namespace JempaTV.WatchLists
             var seriesList = new List<SerieDto>();
 
             if (watchlist != null)
-            foreach (var serie in watchlist.Series)
-            {
-                seriesList.Add(_mapper.Map<SerieDto>(serie));
-            }
-
+                seriesList = _mapper.Map<List<SerieDto>>(watchlist.Series);
             return seriesList;
 
         }
 
         public async Task<List<WatchListDto>> GetRecentChangesAsync()
         {
+            var recentWatchlists = await _watchListRepository.GetRecentChangesAsync();
 
-            var list = await _watchListRepository.GetListAsync();
-
-            var recentChanges = new List<WatchListDto>();
-
-            var oneDayAgo = DateTime.UtcNow.AddDays(-1);
-
-            foreach (var watchlist in list) { 
-                foreach (var serie in watchlist.Series)
+            return recentWatchlists
+                .Select(w => new WatchListDto
                 {
-                    if (serie.LastModified >= oneDayAgo)
-                    {
-                        
-                        recentChanges.Add(new WatchListDto
-                        {
-                            Id = watchlist.Id,
-                            IdUsuario = watchlist.IdUsuario,
-                        });
-                    }
-                }
-            }
-
-            return recentChanges;
-
-    
+                    Id = w.Id,
+                    IdUsuario = w.IdUsuario
+                })
+                .ToList();
         }
+
         public async Task DeleteSerieFromWatchlist(int IdSerie)
         {
             Guid? IdUsuario = _currentUser.Id;

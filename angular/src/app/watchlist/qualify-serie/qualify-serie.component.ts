@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SerieDto } from '@proxy/series';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalizationService } from '@abp/ng.core';
 
 @Component({
   selector: 'app-qualify-serie',
@@ -30,6 +31,13 @@ export class QualifySerieComponent implements OnInit{
   hovered = 0;
 
   rating = 0;
+
+  whatYouThink: string;
+  yourRate: string;
+  yourComment: string;
+  qualify: string;
+  plot: string;
+  actors: string;
   
   onSubmit() {
     if (this.formulario.valid) {
@@ -37,8 +45,6 @@ export class QualifySerieComponent implements OnInit{
       calificationData.comentario = this.formulario.value.comentario
       calificationData.valor = this.rating;
       calificationData.idSerie = Number(this.route.snapshot.paramMap.get('id'));
-      
-      console.log(calificationData);
 
       // Envía los datos a la base de datos usando el servicio
       this.serieService.addCalification(calificationData).subscribe({
@@ -59,8 +65,13 @@ export class QualifySerieComponent implements OnInit{
     this.serieService.addCalification(calification).subscribe();
   }
 
-  constructor(private route: ActivatedRoute, private serieService:SerieService, private router: Router){
-
+  constructor(private route: ActivatedRoute, private serieService:SerieService, private router: Router, private localizationService: LocalizationService){
+    this.whatYouThink = localizationService.instant('JempaTV::WhatYouThink')
+    this.actors = localizationService.instant('JempaTV::Actors')
+    this.yourComment = localizationService.instant('JempaTV::YourComment')
+    this.yourRate = localizationService.instant('JempaTV::YourRate')
+    this.qualify = localizationService.instant('JempaTV::Qualify')
+    this.plot = localizationService.instant('JempaTV::Plot')
   }
 
   ngOnInit(): void {

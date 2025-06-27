@@ -1,6 +1,7 @@
 <div class="container">
   <div class="api-title">
-    <div class="row-auto ng-star-inserted"><h1 class="content-header-title">Estadísticas</h1></div>
+    <div class="row-auto ng-star-inserted"><h1 class="content-header-title">{{this.statsLabel}}
+    </h1></div>
     <div class="col-lg-auto ps-lg-0 ng-star-inserted">
       <div>
         <div>
@@ -10,32 +11,38 @@
                 ><i aria-hidden="true" class="fa fa-home"></i
               ></a>
             </li>
-            <li aria-current="page" class="breadcrumb-item ng-star-inserted">Estadísticas API</li>
-            <li aria-current="page" class="breadcrumb-item active ng-star-inserted">Estadísticas</li>
+            <li aria-current="page" class="breadcrumb-item ng-star-inserted">{{this.apiStatistics}}</li>
+            <li aria-current="page" class="breadcrumb-item active ng-star-inserted">
+              {{this.statsLabel}}
+            </li>
           </ol>
         </div>
       </div>
     </div>
   </div>
-  
+
   <div class="api-management">
     <div class="estadisticas-api">
-      <canvas id="myChart"></canvas>
+      <canvas id="myChart" [style.display]="load ? 'block' : 'none'"></canvas>
+          <div *ngIf="!this.load" class="loading-spinner align-center justify-center flex ">
+      <i class="fa fa-spinner fa-spin text-white self-center"></i>
     </div>
-  
+    </div>
+
+
+
     <div class="estadisticas-app">
       <div>
         <div>
-          <h4>Cantidad total de errores: {{ error }}</h4>
+          <h4>{{this.totalErrorsLabel}}{{ error }}</h4>
         </div>
       </div>
       <div>
-        <h4>Cantidad total de usuarios: {{ totalUsers }}</h4>
+        <h4>{{this.totalUsersLabel}}{{ totalUsers }}</h4>
       </div>
       <div>
-        <h4>Tiempo promedio de respuesta: {{ executionDuration }} ms</h4>
+        <h4>{{this.responseTimeLabel}} {{ executionDuration }} ms</h4>
       </div>
     </div>
   </div>
-  
 </div>

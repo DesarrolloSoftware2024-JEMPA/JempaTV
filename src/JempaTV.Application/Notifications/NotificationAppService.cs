@@ -91,10 +91,7 @@ namespace JempaTV.Notifications
 
             var notificationList = await _notificationRepository.GetListAsync(n => n.User == userId);
 
-            foreach (var notif in notificationList)
-            {
-                notificationDtoList.Add(_mapper.Map<NotificationDto>(notif));
-            }
+            notificationDtoList = _mapper.Map<Collection<NotificationDto>>(notificationList);
 
             return notificationDtoList;
         }

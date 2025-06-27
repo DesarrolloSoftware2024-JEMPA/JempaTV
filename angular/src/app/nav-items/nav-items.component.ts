@@ -50,15 +50,23 @@ export class NavItemsComponent {
     );
   }
 
-  get dropdownLanguages$(): Observable<LanguageInfo[]> {
-    return this.languages$.pipe(
-      map(
-        languages =>
-          snq(() => languages.filter(lang => lang.cultureName !== this.selectedLangCulture)),
+
+// Aca filtramos para tener solo ingles y español
+get dropdownLanguages$(): Observable<LanguageInfo[]> {
+  return this.languages$.pipe(
+    map(languages =>
+      snq(
+        () =>
+          languages
+            .filter(lang =>
+              (lang.displayName === 'English' || lang.displayName === 'Español') &&
+              lang.cultureName !== this.selectedLangCulture
+            ),
         []
       )
-    );
-  }
+    )
+  );
+}
 
   get selectedLangCulture(): string {
     return this.sessionState.getLanguage();

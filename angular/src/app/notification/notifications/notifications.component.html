@@ -1,5 +1,5 @@
 <div class="container" (abpInit)="getNotificationsFromUser()">
-    <h4 class="title">Mis notificaciones </h4>
+    <h4 class="title">{{this.myNotifications}}</h4>
     <div class="notification-container" *ngIf="this.notifications!==null">
       <div *ngFor="let notification of this.notifications" >
         <div [ngClass]="{notification: true, read:notification.read}">

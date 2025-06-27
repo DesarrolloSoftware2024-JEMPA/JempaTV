@@ -76,8 +76,8 @@ public class JempaTVDbContext :
     public JempaTVDbContext(DbContextOptions<JempaTVDbContext> options)
         : base(options)
     {
-        _currentUserService = this.GetService<CurrentUserService>();
-        _openIddictDataSeedContributor = this.GetService<OpenIddictDataSeedContributor>();
+        //_currentUserService = this.GetService<CurrentUserService>();
+        //_openIddictDataSeedContributor = this.GetService<OpenIddictDataSeedContributor>();
 
     }
 
@@ -126,6 +126,7 @@ public class JempaTVDbContext :
         {
             b.ToTable(JempaTVConsts.DbTablePrefix + "WatchLists", JempaTVConsts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
+            b.HasMany(w => w.Series).WithOne().HasForeignKey("WatchListId").OnDelete(DeleteBehavior.Cascade);
         });
 
         builder.Entity<Notification>(b =>

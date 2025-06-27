@@ -5,6 +5,7 @@ import { register } from 'swiper/element/bundle';
 import { EffectCoverflow, Navigation, Pagination } from 'swiper/modules';
 import { SerieDto, SerieService } from '@proxy/series';
 import { forkJoin, Observable} from 'rxjs';
+import { LocalizationService } from '@abp/ng.core';
 
 // Registrar los módulos de Swiper que necesitamos
 SwiperCore.use([EffectCoverflow, Navigation, Pagination]);
@@ -22,8 +23,11 @@ export class SeriesCarouselComponent implements OnInit {
 
   public slidesPerView = 3;
 
-  constructor(private serieService: SerieService) {
+  today: string;
+
+  constructor(private serieService: SerieService, private localizationService: LocalizationService) {
     register();
+    this.today = localizationService.instant('JempaTV::Today')
   }
 
   ngOnInit(): void { 

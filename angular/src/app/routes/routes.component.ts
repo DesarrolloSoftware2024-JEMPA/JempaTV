@@ -1,7 +1,7 @@
 import { Component, HostBinding } from "@angular/core";
 import { SharedModule } from '../shared/shared.module';
 import { Observable } from "rxjs";
-import { CurrentUserDto,ConfigStateService } from "@abp/ng.core";
+import { CurrentUserDto,ConfigStateService, LocalizationService } from "@abp/ng.core";
 
 @Component({
   selector: "app-routes",
@@ -15,12 +15,15 @@ export class RoutesComponent {
 
   public isAdmin = false;
   currentUser$: Observable<CurrentUserDto> = this.configState.getOne$('currentUser');
+
+  apiStats: string;
   
   get smallScreen() {
     return window.innerWidth < 992;
   }
 
-  constructor(private configState: ConfigStateService){
+  constructor(private configState: ConfigStateService, private localizationService: LocalizationService){
+    this.apiStats = localizationService.instant('JempaTV::ApiStats')
   }
 
   isAdminUser(){
