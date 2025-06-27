@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="serie_container" *ngIf="this.serie !== null">
+    <div class="serie-card">
+      <img [src]="this.serie.poster" [alt]="serie.title" class="img-fluid serie-poster" />
+    </div>
+    <div class="serie-details">
+      
+      <h3 class="serie-title">{{ serie.title }}</h3>
+      <div>
+        <p class="serie-year tag">{{ serie.year }}</p>
+      </div>
+      <b>{{this.plot}}</b>
+      <h6 class="serie-plot">{{ serie.plot }}</h6>
+      <b>{{this.actors}}</b>
+      <h6 class="serie-plot">{{ serie.actors }}</h6>
+    </div>
+  </div>
+  <div class="form_container" (abpInit)="this.getCalificationFromSerie(this.idSerie)">
+    <h4 class="form_title">{{this.whatYouThink}}</h4>
+    <form [formGroup]="formulario" (submit)="onSubmit()" class="form">
+      <div class="inputs">
+        <label for="">{{this.yourRate}}</label>
+        <div class="form_input stars">
+          <div *ngFor="let star of stars">
+            <h4 class="star"><i
+              class="fas fa-star"
+              (click)="setRating(star)"
+              (mouseenter)="enter(star)"
+              (mouseleave)="leave()"
+              [ngClass]="{
+                'filled': star <= (hovered || rating),
+                'empty': star >  (hovered || rating)
+              }"
+            ></i></h4>
+          </div>
+        </div>
+
+        <div class="form_input" className="flex flex-col">
+          <label for="">{{this.yourComment}}</label>
+          <div class="form_error">
+            <input
+              *ngIf="this.calification === null"
+              id="comentario"
+              type="text"
+              formControlName="comentario"
+              class="text"
+            />
+            <input
+              *ngIf="this.calification !== null"
+              id="comentario"
+              type="text"
+              formControlName="comentario"
+              [value]="this.calification.comentario"
+              class="text"
+            />
+            <div
+              *ngIf="formulario.get('comentario').invalid && formulario.get('comentario').touched"
+              class="invalid-feedback"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="form_btn" [disabled]="formulario.invalid">{{this.qualify}}</button>
+    </form>
+  </div>
+</div>

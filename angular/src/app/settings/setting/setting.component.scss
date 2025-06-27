@@ -1,0 +1,58 @@
+@import "../../../variables";
+
+.container{
+    min-height: 80vh;
+}
+
+.form{
+    background-color: $color-font-primary;
+    padding: 1rem;
+    width: 75%;
+    border-radius: 0.5rem;
+}
+
+.form-btns{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.checkbox{
+    width: 1.5rem;
+    height: 2rem;
+    vertical-align: middle;
+    border-radius: 30%;
+}
+
+.form-label{
+    padding: 1rem 0;
+}
+
+.nav-item{
+    padding: 1rem 0;
+}
+
+.formbtn{
+    opacity: 0.6;
+}
+
+.formbtn:active{
+    opacity: 1;
+}
+
+button{
+    width: fit-content;
+    padding: 0;
+}
+
+.btn{
+    background-color: $color-btn-primary;
+    padding: 0.2rem 0.9rem;
+}
+
+@media screen and (max-width:768px){
+    .form{
+        width: 100%;
+    }
+}

@@ -1,9 +1,34 @@
 {
   "Culture": "en",
-  "Texts": {
-    "AppName": "JempaTV",
-    "Menu:Home": "Home",
-    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information visit",
-    "Welcome": "Welcome"
-  }
+    "Texts": {
+        "AppName": "JempaTV",
+        "Menu:Home": "Home",
+        "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information visit",
+        "Welcome": "Welcome",
+        "SearchSerie": "Search for your series...",
+        "AddToWatchlist": "Add to Watchlist",
+        "AddedToWatchlist": "Added to Watchlist",
+        "ApiStats": "API Statistics",
+        "MyWatchlist": "My Watchlist",
+        "WatchlistIsEmpty": "Your Watchlist is empty",
+        "WhatYouThink": "What did you think?",
+        "YourRate": "Your rating:",
+        "YourComment": "Comment:",
+        "Qualify": "Rate",
+        "Plot": "Plot",
+        "Actors": "Actors",
+        "MyNotifications": "My Notifications",
+        "TestNotificationTitle": "Test Notification",
+        "TestNotificationComment": "If you received this notification, it means the system is working correctly.",
+        "SendTestNotification": "Send test notification",
+        "ReceiveEmails": "Receive email notifications",
+        "AppDescription": "The streaming platform that offers the best series and movies.",
+        "AppLogin": "Log in to explore our catalog!",
+        "Stats": "Statistics",
+        "ApiActivity": "API Activity",
+        "byMonth": "by Month",
+        "totalErrors": "Total errors: ",
+        "totalUsers": "Total users: ",
+        "responseTime": "Average response time: "
+    }
 }

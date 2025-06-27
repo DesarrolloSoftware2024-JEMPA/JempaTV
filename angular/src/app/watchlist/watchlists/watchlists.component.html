@@ -1,0 +1,28 @@
+<div (abpInit)="getUserCalifications()" class="container">
+  <h4  *ngIf="this.watchlist.length===0" class="py-5">{{this.watchlistIsEmpty}}</h4>
+  <div *ngIf="this.watchlist.length>0">
+    <h4>{{this.myWatchlist}}</h4>
+    <div class="watchlist">
+      <div *ngFor="let serie of this.watchlist" class="series-container">
+        <div class="serie-card">
+          <img [src]="serie.poster" [alt]="serie.title" class="img-fluid serie-poster">
+          <div class="serie-btns">
+            <button *ngIf="getRowCalification(serie)===undefined" [routerLink]="getRowUrl(serie)"><i class="fa fa-heart"></i></button>
+            <button *ngIf="getRowCalification(serie)!==undefined" [routerLink]="getRowUrl(serie)"><i class="fa fa-edit"></i></button>
+            <button (click)="deleteSerie(serie)"><i class="fa fa-trash"></i></button>
+          </div>
+          <div class="serie-details">
+            <h3 class="serie-title">{{ serie.title }}</h3>
+            <div *ngIf="getRowCalification(serie)!==undefined">
+            <p class="serie-year stars" id={{getRowCalification(serie).id}} (abpInit)="insertStars(getRowCalification(serie).valor, getRowCalification(serie).id)"></p>
+            <p class="serie-year">{{getRowCalification(serie).comentario}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <!-- <app-recomended-series></app-recomended-series> -->
+  </div>
+</div>

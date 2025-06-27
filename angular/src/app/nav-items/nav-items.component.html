@@ -1,0 +1,117 @@
+<ul (abpInit)="Init()" class="navbar-nav" *ngIf="(currentUser$ | async)?.isAuthenticated">
+  <!-- BUSQUEDA -->
+
+  <!-- PERFIL -->
+  <li class="nav-item d-flex align-items-center">
+    <ng-template #loginBtn>
+      <a role="button" class="nav-link pointer" (click)="navigateToLogin()">{{
+        'AbpAccount::Login' | abpLocalization
+      }}</a>
+    </ng-template>
+    <div *ngIf="(currentUser$ | async)?.isAuthenticated" class="logged-items">
+      <div>
+        <div class="btn-container">
+          <button routerLink="/series" class="btn-alt search">
+            <i class="fa fa-search light"></i>
+          </button>
+          <button routerLink="/watchlist" class="btn-alt watchlist"><i class="fa fa-list light"></i></button>
+        </div>
+      </div>
+      <button class="btn-alt my-notifications" >
+        <i
+          *ngIf="!this.unreadNotifications"
+          class="fa fa-bell"
+          aria-hidden="true"
+          style="cursor: pointer;"
+          routerLink="/my-notifications"
+        ></i>
+        <i
+          *ngIf="this.unreadNotifications"
+          class="fa fa-bell"
+          aria-hidden="true"
+          style="color: #0e66e9; cursor: pointer;"
+          routerLink="/my-notifications"
+        ></i>
+      </button>
+    </div>
+    
+    <div
+      *ngIf="(currentUser$ | async)?.isAuthenticated; else loginBtn"
+      ngbDropdown
+      class="dropdown"
+      #currentUserDropdown="ngbDropdown"
+      display="static"
+    >
+      <a
+        ngbDropdownToggle
+        class="nav-link"
+        href="javascript:void(0)"
+        role="button"
+        id="dropdownMenuLink"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <img
+          [src]="userProfilePicture ?? this.defaultProfilePicture"
+          alt="profile-picture"
+          width="30px"
+        />
+      </a>
+      <div
+        class="dropdown-menu dropdown-menu-right border-0 shadow-sm "
+        aria-labelledby="dropdownMenuLink"
+        [class.d-block]="smallScreen && currentUserDropdown.isOpen()"
+      >
+        <p class="username">{{ (currentUser$ | async)?.userName }}</p>
+        <a class="dropdown-item pointer" routerLink="/settings"
+          ><i class="fa fa-cog mr-1 p-1"></i
+          >{{ 'AbpSettingManagement::Settings' | abpLocalization }}</a
+        >
+        <a class="dropdown-item pointer" (click)="navigateToManageProfile()"
+          ><i class="fa fa-cog mr-1 p-1"></i>{{ 'AbpAccount::MyAccount' | abpLocalization }}</a
+        >
+        <a class="dropdown-item" href="javascript:void(0)" (click)="logout()"
+          ><i class="fa fa-power-off mr-1 p-1"></i>{{ 'AbpUi::Logout' | abpLocalization }}</a
+        >
+        <!--LENGUAJES-->
+        <li class="nav-item d-flex align-items-center">
+          <div
+            *ngIf="(dropdownLanguages$ | async)?.length > 0"
+            class="dropdown"
+            ngbDropdown
+            #languageDropdown="ngbDropdown"
+            display="static"
+          >
+            <a
+              ngbDropdownToggle
+              class="nav-link"
+              href="javascript:void(0)"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              ngClass="language"
+            >
+              {{ defaultLanguage$ | async }}
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-right border-0 shadow-sm"
+              aria-labelledby="dropdownMenuLink"
+              [class.d-block]="smallScreen && languageDropdown.isOpen()"
+            >
+              <a
+                *ngFor="let lang of dropdownLanguages$ | async"
+                href="javascript:void(0)"
+                class="dropdown-item"
+                (click)="onChangeLang(lang.cultureName)"
+                >{{ lang?.displayName }}</a
+              >
+            </div>
+          </div>
+        </li>
+      </div>
+    </div>
+  </li>
+</ul>

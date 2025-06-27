@@ -1,0 +1,68 @@
+@import "../../variables";
+
+.language{
+    color: $color-font-secondary;
+    padding-left: 0.2vw;
+    margin-left: 1vw;
+}
+
+.logged-items{
+    display: flex;
+    flex-direction: row;
+    gap: 0.2rem;
+
+}
+
+
+.btn-container{
+    display: flex;
+    flex-direction: row;
+}
+
+::ng-deep nav{
+    background: transparent !important;
+}
+.btn-alt{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 2.3rem;
+    height: 2.3rem;
+    margin: 0.3rem;
+    border-radius: 1.8rem;
+    padding: 0.3rem 0.5rem;
+    background-color: rgba(109, 109, 109, 0.4);
+    color: $color-font-primary;
+    border: none;
+}
+
+.btn-alt:hover{
+    transform: scale(1.2);
+    transition: all 0.15s ease-in-out;
+}
+
+.username{
+    font-size: large;
+    font-weight: bold;
+    padding: 1rem 0 0 1rem;
+    margin: 0 0 1rem 0;
+}
+
+.d-block{
+    transition: opacity 0.3s ease-in-out;
+    visibility: visible;
+    display: block;
+    opacity: 1;
+    background-color: white;
+}
+
+@media screen and (max-width:768px){
+    .align-items-center{
+        align-items: start !important;
+    }
+
+    .logged-items{
+        padding-right: 0.5rem;
+    }
+}
+

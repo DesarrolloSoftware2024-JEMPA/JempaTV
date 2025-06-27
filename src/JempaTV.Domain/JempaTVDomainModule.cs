@@ -17,6 +17,11 @@ using Volo.Abp.Emailing;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.TenantManagement;
+using JempaTV.Users;
+using Volo.Abp.Data;
+using Volo.Abp.Threading;
+using JempaTV.OpenIddict;
+
 
 namespace JempaTV;
 
@@ -64,7 +69,11 @@ public class JempaTVDomainModule : AbpModule
             options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch"));
             options.Languages.Add(new LanguageInfo("es", "es", "Español"));
         });
-        
+
+        context.Services.AddTransient<CurrentUserService>();
+        context.Services.AddTransient<OpenIddictDataSeedContributor>();
+
+
 
 #if DEBUG
         context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());

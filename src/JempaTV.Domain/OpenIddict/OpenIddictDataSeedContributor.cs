@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
+using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using Volo.Abp;
 using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Identity;
 using Volo.Abp.OpenIddict.Applications;
 using Volo.Abp.OpenIddict.Scopes;
 using Volo.Abp.PermissionManagement;
@@ -30,6 +34,9 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
     private readonly IOpenIddictScopeManager _scopeManager;
     private readonly IPermissionDataSeeder _permissionDataSeeder;
     private readonly IStringLocalizer<OpenIddictResponse> L;
+    private readonly IdentityRoleManager _roleManager;
+    private readonly IRepository<IdentityRole, Guid> _roleRepository;
+    private readonly IPermissionManager _permissionManager;
 
     public OpenIddictDataSeedContributor(
         IConfiguration configuration,
@@ -38,7 +45,10 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
         IOpenIddictScopeRepository openIddictScopeRepository,
         IOpenIddictScopeManager scopeManager,
         IPermissionDataSeeder permissionDataSeeder,
-        IStringLocalizer<OpenIddictResponse> l)
+        IStringLocalizer<OpenIddictResponse> l,
+        IdentityRoleManager roleManager,
+        IRepository<IdentityRole, Guid> roleRepository,
+        IPermissionManager permissionManager)
     {
         _configuration = configuration;
         _openIddictApplicationRepository = openIddictApplicationRepository;
@@ -47,14 +57,84 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
         _scopeManager = scopeManager;
         _permissionDataSeeder = permissionDataSeeder;
         L = l;
+        _roleManager = roleManager;
+        _roleRepository = roleRepository;
+        _permissionManager = permissionManager;
+
     }
 
     [UnitOfWork]
     public virtual async Task SeedAsync(DataSeedContext context)
     {
+
+        const string adminRoleName = "Admin";
+        string[] adminPermissionName = {
+        "FeatureManagement.ManageHostFeatures",
+        "SettingManagement.Emailing",
+        "AbpIdentity.Roles.Update",
+        "SettingManagement.TimeZone",
+        "AbpIdentity.Users",
+        "AbpIdentity.Users.Create",
+        "AbpIdentity.Users.Delete",
+        "AbpIdentity.Roles.Create",
+        "AbpIdentity.Roles.ManagePermissions",
+        "AbpIdentity.Roles.Delete",
+        "AbpIdentity.Roles",
+        "SettingManagement.Emailing.Test",
+        "AbpIdentity.Users.ManagePermissions",
+        "AbpIdentity.Users.Update.ManageRoles",
+        "AbpIdentity.Users.Update",
+        "AbpTenantManagement.Tenants.Update",
+        "AbpTenantManagement.Tenants.Delete",
+        "AbpTenantManagement.Tenants.Create",
+        "AbpTenantManagement.Tenants",
+        "AbpTenantManagement.Tenants.ManageFeatures",
+        "AbpTenantManagement.Tenants.ManageConnectionStrings"
+        };
+
+        const string clientRoleName = "Client";
+        string[] clientPermissionName = { "SettingManagement.TimeZone" };
+
+        // Crea los roles
+        await CreateRoleAsync(adminRoleName, adminPermissionName);
+        await CreateRoleAsync(clientRoleName, clientPermissionName);
+
+        // Crea scopes y application clients
         await CreateScopesAsync();
         await CreateApplicationsAsync();
     }
+
+    public async Task SetPermission(IdentityRole role, string[] permissionName)
+    {
+        foreach (var permission in permissionName)
+        {
+            await _permissionManager.SetForRoleAsync(role.Name, permission, true);
+
+            await _roleManager.AddClaimAsync(role, new Claim("Permission", permission));
+            
+        }
+    }
+
+    public async Task CreateRoleAsync(string roleName, string[] permissionName)
+    {
+
+        // Verifica si el rol ya existe
+        if (await _roleRepository.FirstOrDefaultAsync(r => r.Name == roleName) != null)
+        {
+            return; // El rol ya existe
+        }
+
+        // Crea el rol
+        var role = new IdentityRole(Guid.NewGuid(), roleName);
+
+        if (roleName == "Client") { role.IsDefault = true; role.IsPublic = true; }
+
+        await _roleManager.CreateAsync(role);
+
+        await SetPermission(role, permissionName);
+
+    }
+
 
     private async Task CreateScopesAsync()
     {
@@ -79,12 +159,12 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
 
         var configurationSection = _configuration.GetSection("OpenIddict:Applications");
 
-
         //Console Test / Angular Client
-        var consoleAndAngularClientId = configurationSection["JempaTV_App:ClientId"];
+        //var consoleAndAngularClientId = configurationSection["JempaTV_App:ClientId"];
+        var consoleAndAngularClientId = _configuration.GetSection("JempaTV_App:ClientId").Value;
         if (!consoleAndAngularClientId.IsNullOrWhiteSpace())
         {
-            var consoleAndAngularClientRootUrl = configurationSection["JempaTV_App:RootUrl"]?.TrimEnd('/');
+            var consoleAndAngularClientRootUrl = _configuration.GetSection("JempaTV_App:RootUrl").Value?.TrimEnd('/');
             await CreateApplicationAsync(
                 name: consoleAndAngularClientId!,
                 type: OpenIddictConstants.ClientTypes.Public,
@@ -114,10 +194,10 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
 
 
         // Swagger Client
-        var swaggerClientId = configurationSection["JempaTV_Swagger:ClientId"];
+        var swaggerClientId = _configuration.GetSection("JempaTV_Swagger:ClientId").Value;
         if (!swaggerClientId.IsNullOrWhiteSpace())
         {
-            var swaggerRootUrl = configurationSection["JempaTV_Swagger:RootUrl"]?.TrimEnd('/');
+            var swaggerRootUrl = _configuration.GetSection("JempaTV_Swagger:RootUrl").Value?.TrimEnd('/');
 
             await CreateApplicationAsync(
                 name: swaggerClientId!,
