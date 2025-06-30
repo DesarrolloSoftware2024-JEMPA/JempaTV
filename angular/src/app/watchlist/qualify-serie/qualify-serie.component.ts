@@ -88,7 +88,7 @@ export class QualifySerieComponent implements OnInit{
   }
 
   getSerie(idSerie: number){
-    this.serieService.get(idSerie).subscribe(s => {this.serie = s; console.log(s)})
+    this.serieService.get(idSerie).subscribe(s => this.serie = s)
   }
 
   setRating(value: number) {

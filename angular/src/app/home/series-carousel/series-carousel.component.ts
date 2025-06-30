@@ -17,8 +17,18 @@ SwiperCore.use([EffectCoverflow, Navigation, Pagination]);
 })
 export class SeriesCarouselComponent implements OnInit {
 
-  public imdbIds = ["tt16366836","tt13186482","tt27714946","tt29623480","tt32560777","tt4772188", "tt0096697", "tt4154796", "tt3566834", "tt13622970"];
-
+  public imdbIds = [
+    "tt3581920",
+    "tt31510819",
+    "tt31216548",
+    "tt9253284",
+    "tt0944947",
+    "tt31710249",
+    "tt13406094",
+    "tt13064902",
+    "tt0903747",
+    "tt14452776"
+  ]
   public series = [] as SerieDto[];
 
   public slidesPerView = 3;

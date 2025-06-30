@@ -27,6 +27,8 @@ export class SettingComponent implements OnInit{
 
   sendTestNotification: string;
   receiveEmails: string;
+  defaultProfilePicture: string = "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png";
+
 
 
   constructor(private userService: UserService, private notificationService: NotificationService, private localizationService: LocalizationService){
@@ -35,22 +37,49 @@ export class SettingComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.userService.getProfilePicture().subscribe(x => {this.miFormulario.patchValue({profilePictureUrl: x})});
+    const imgBase64 = localStorage.getItem('profilePicture')
+    if (imgBase64){
+      this.miFormulario.patchValue({profilePictureUrl: imgBase64})
+    } else {
+    this.userService.getProfilePicture().subscribe(x => {this.miFormulario.patchValue({profilePictureUrl: x})})
+    }
     this.userService.getEmailConfig().subscribe(x => {if (x.valueOf()==="True"){this.miFormulario.patchValue({acceptEmails: true})}
      else {this.miFormulario.patchValue({acceptEmails: false})}})
   }
 
   onSubmit(formData: any) {
-
-    console.log(formData.profilePictureUrl, formData.acceptEmails)
+    
     this.userService.setEmailConfig(formData.acceptEmails)
-    .subscribe(()=>{if (formData.profilePictureUrl!=="" && formData.profilePictureUrl !== null){
+    .subscribe(()=>{
+      if (formData.profilePictureFile != undefined){
+        formData.profilePictureUrl =  localStorage.getItem('profilePicture');
+      } else {
+        if (formData.profilePictureUrl!=="" && formData.profilePictureUrl !== null){
       this.userService.setProfilePicture(formData.profilePictureUrl).subscribe()
-      }})
+      localStorage.removeItem('profilePicture');
+      }
+      }
+    alert(this.localizationService.instant('AbpSettingManagement::SavedSuccessfully'));
+    })
   }
 
   sendTestEmail(){
     this.notificationService.sendTestNotification().subscribe()
   }
+
+adjuntarArchivo(event: Event) {
+  const input = event.target as HTMLInputElement;
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    if (file.type === 'image/png' || file.type === 'image/jpeg') {
+      const reader = new FileReader();
+      reader.onload = () => {
+        // cacheado (clave: profilePicture)
+        localStorage.setItem('profilePicture', reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+}
 
 }
