@@ -93,8 +93,13 @@ get dropdownLanguages$(): Observable<LanguageInfo[]> {
     this.authService.logout().subscribe();
   }
 
-  public getProfilePicture(){
+    public getProfilePicture(){
+    const imgBase64 = localStorage.getItem('profilePicture')
+    if (imgBase64){
+      this.userProfilePicture = imgBase64
+    } else {
     this.userService.getProfilePicture().subscribe(response => this.userProfilePicture = response)
+    }
     
   }
 

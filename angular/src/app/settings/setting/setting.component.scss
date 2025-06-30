@@ -51,6 +51,19 @@ button{
     padding: 0.2rem 0.9rem;
 }
 
+.inputFile{
+    border: 1px solid $color-background-secondary;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+
+}
+
+.ProfilePictureInput{
+    display: flex;
+    flex-direction: row; 
+    gap: 1rem;
+}
+
 @media screen and (max-width:768px){
     .form{
         width: 100%;

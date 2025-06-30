@@ -56,7 +56,6 @@ export class HomeComponent implements OnInit {
 
   getCurrentUserId() {
     const currentUserId = this.config.getOne('currentUser').id;
-    console.log(currentUserId);
     return currentUserId;
   }
 

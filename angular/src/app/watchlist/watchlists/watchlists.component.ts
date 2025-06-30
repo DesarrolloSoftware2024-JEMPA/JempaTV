@@ -58,7 +58,6 @@ export class WatchlistsComponent implements OnInit {
 
   
   deleteSerie(row) {
-    console.log(row, this.watchlist);
     const index = this.watchlist.findIndex(item => item.id === row.id);
     this.watchlist = [...this.watchlist];
       if (index !== -1) {
